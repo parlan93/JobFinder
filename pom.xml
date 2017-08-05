@@ -25,7 +25,6 @@
     <dependencies>
         
         <!--Javax-->
-        
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
@@ -34,7 +33,6 @@
         </dependency>
         
         <!--Spring Framework-->
-        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -54,7 +52,6 @@
         </dependency>
 
         <!--Springa Data Jpa-->
-        
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
