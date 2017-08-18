@@ -1,7 +1,6 @@
 package pl.edu.utp.jobfinder.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -34,9 +33,9 @@ public class JobOffer implements Serializable {
     private Date date;
     private String description;
     @Column(nullable = false)
-    @ElementCollection
+    @ElementCollection(targetClass = String.class)
     private List<String> requirements;
-    @ElementCollection
+    @ElementCollection(targetClass = String.class)
     private List<String> advantages;
     private String business;
     private String workTime;
