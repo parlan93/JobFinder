@@ -88,4 +88,10 @@ public class AppUser implements Serializable {
         this.cv = cv;
     }
 
+    // To String
+    @Override
+    public String toString() {
+        return "USER: " + firstname + " " + lastname + " " + email + " " + password;
+    }
+
 }

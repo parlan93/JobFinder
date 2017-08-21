@@ -1,11 +1,11 @@
 package pl.edu.utp.jobfinder.model;
 
 /**
- * 
+ *
  * @author Bartłomiej Skibiński
  */
 public enum LevelOfEducation {
-    
+
     // Options
     NONE("Brak"),
     ELEMENTARY("Podstawowe"),
@@ -16,10 +16,15 @@ public enum LevelOfEducation {
 
     // Fields
     private String name;
-    
+
     // Constructors
     private LevelOfEducation(String name) {
         this.name = name;
+    }
+
+    // Getter
+    public String getName() {
+        return name;
     }
 
 }

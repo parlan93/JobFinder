@@ -26,5 +26,10 @@ public enum EducationTitle {
     private EducationTitle(String title) {
         this.title = title;
     }
-    
+
+    // Getter
+    public String getTitle() {
+        return title;
+    }
+
 }
