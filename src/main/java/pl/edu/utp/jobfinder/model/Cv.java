@@ -1,5 +1,7 @@
 package pl.edu.utp.jobfinder.model;
 
+import pl.edu.utp.jobfinder.enumerator.LevelOfEducation;
+import pl.edu.utp.jobfinder.enumerator.EducationTitle;
 import java.io.Serializable;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -11,6 +13,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import pl.edu.utp.jobfinder.enumerator.LanguageLevel;
+import pl.edu.utp.jobfinder.enumerator.SkillLevel;
 
 /**
  *
@@ -53,13 +57,13 @@ public class Cv implements Serializable {
 
     @ElementCollection(targetClass = String.class)
     private List<String> skills;
-    @ElementCollection(targetClass = String.class)
-    private List<String> skillsLevels;
+    @ElementCollection(targetClass = SkillLevel.class)
+    private List<SkillLevel> skillsLevels;
 
     @ElementCollection(targetClass = String.class)
     private List<String> languages;
-    @ElementCollection(targetClass = String.class)
-    private List<String> languagesLevels;
+    @ElementCollection(targetClass = LanguageLevel.class)
+    private List<LanguageLevel> languagesLevels;
 
     @ElementCollection(targetClass = String.class)
     private List<String> interests;
@@ -200,11 +204,11 @@ public class Cv implements Serializable {
         this.skills = skills;
     }
 
-    public List<String> getSkillsLevels() {
+    public List<SkillLevel> getSkillsLevels() {
         return skillsLevels;
     }
 
-    public void setSkillsLevels(List<String> skillsLevels) {
+    public void setSkillsLevels(List<SkillLevel> skillsLevels) {
         this.skillsLevels = skillsLevels;
     }
 
@@ -216,11 +220,11 @@ public class Cv implements Serializable {
         this.languages = languages;
     }
 
-    public List<String> getLanguagesLevels() {
+    public List<LanguageLevel> getLanguagesLevels() {
         return languagesLevels;
     }
 
-    public void setLanguagesLevels(List<String> languagesLevels) {
+    public void setLanguagesLevels(List<LanguageLevel> languagesLevels) {
         this.languagesLevels = languagesLevels;
     }
 
@@ -294,14 +298,14 @@ public class Cv implements Serializable {
         if (skills != null && !skills.isEmpty()) {
             cv.append("\n\nSkills\n");
             for (int i = 0; i < skills.size(); i++) {
-                cv.append(skills.get(i)).append(" - ").append(skillsLevels.get(i)).append("\n");
+                cv.append(skills.get(i)).append(" - ").append(skillsLevels.get(i).getSkillLevel()).append("\n");
             }
         }
 
         if (languages != null && !languages.isEmpty()) {
             cv.append("\nLanguages\n");
             for (int i = 0; i < languages.size(); i++) {
-                cv.append(languages.get(i)).append(" - ").append(languagesLevels.get(i)).append("\n");
+                cv.append(languages.get(i)).append(" - ").append(languagesLevels.get(i).getLevelLabel()).append("\n");
             }
         }
 

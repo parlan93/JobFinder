@@ -1,4 +1,4 @@
-package pl.edu.utp.jobfinder.model;
+package pl.edu.utp.jobfinder.enumerator;
 
 /**
  *
