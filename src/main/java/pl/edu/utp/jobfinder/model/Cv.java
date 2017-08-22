@@ -270,9 +270,9 @@ public class Cv implements Serializable {
         }
 
         if (schools != null && !schools.isEmpty()) {
-            cv.append("Education\n");
+            cv.append("Education");
             for (int i = 1; i <= schools.size(); i++) {
-                cv.append("School ").append(i).append(": ").append(schools.get(i - 1)).append("\n");
+                cv.append("\nSchool ").append(i).append(": ").append(schools.get(i - 1)).append("\n");
                 cv.append("Subject: ").append(subjects.get(i - 1)).append("\n");
                 cv.append("Dates: ");
                 StringTokenizer tokenizer = new StringTokenizer(educationDates.get(i - 1), ";");

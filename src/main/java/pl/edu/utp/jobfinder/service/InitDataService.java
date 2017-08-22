@@ -9,6 +9,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.edu.utp.jobfinder.enumerator.EducationTitle;
+import pl.edu.utp.jobfinder.enumerator.LevelOfEducation;
 import pl.edu.utp.jobfinder.model.AppUser;
 import pl.edu.utp.jobfinder.model.Cv;
 import pl.edu.utp.jobfinder.repository.AppUserRepository;
@@ -40,7 +42,7 @@ public class InitDataService {
     @Autowired
     private UserRoleRepository userRoleRepository;
 
-    // Random class to generate values
+    // Random object to generate values
     Random random = new Random();
 
     // Constructor
@@ -113,6 +115,21 @@ public class InitDataService {
             cv.setBirthDate(fullDateGenerator());
             cv.setPhone(phoneNumberGenerator());
             cv.setAddress(addressGenerator());
+
+            cv.setLevelOfEducation(levelOfEducationGenerator());
+            cv.setEducationTitle(educationTitleGenerator());
+            int cvNumberOfSchools = random.nextInt(6);
+            List<String> cvSchools = new ArrayList<>();
+            List<String> cvSubjects = new ArrayList<>();
+            List<String> cvEducationDates = new ArrayList<>();
+            for (int i = 0; i < cvNumberOfSchools; i++) {
+                cvSchools.add(stringGenerator(schools));
+                cvSubjects.add(stringGenerator(subjects));
+                cvEducationDates.add(educationDatesGenerator());
+            }
+            cv.setSchools(cvSchools);
+            cv.setSubjects(cvSubjects);
+            cv.setEducationDates(cvEducationDates);
 
             if (sout) {
                 System.out.println(cv.toString());
@@ -225,11 +242,41 @@ public class InitDataService {
         gregorianCalendar.set(gregorianCalendar.DAY_OF_YEAR, random.nextInt(gregorianCalendar.getActualMaximum(gregorianCalendar.DAY_OF_YEAR)));
 
         // Create and return string from gregorian calendar
-        StringBuilder stringBuilder = new StringBuilder();
-        return stringBuilder
+        StringBuilder date = new StringBuilder();
+        return date
                 .append(gregorianCalendar.get(gregorianCalendar.DAY_OF_MONTH))
                 .append("/").append(gregorianCalendar.get(gregorianCalendar.MONTH))
                 .append("/").append(gregorianCalendar.get(gregorianCalendar.YEAR))
+                .toString();
+    }
+
+    /**
+     * Date generator - generate random MM/YYYY date from range (1980, 2010)
+     *
+     * @return
+     */
+    private String dateGenerator() {
+        return dateGenerator(1980, 2010);
+    }
+
+    /**
+     * Date generator - generate random MM/YYYY date from range (yearFrom,
+     * yearTo)
+     *
+     * @param yearFrom
+     * @param yearTo
+     * @return
+     */
+    private String dateGenerator(int yearFrom, int yearTo) {
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.set(gregorianCalendar.YEAR, random.nextInt(yearTo - yearFrom) + yearFrom);
+        gregorianCalendar.set(gregorianCalendar.MONTH, random.nextInt(12));
+
+        StringBuilder date = new StringBuilder();
+        return date
+                .append(gregorianCalendar.get(gregorianCalendar.MONTH))
+                .append("/")
+                .append(gregorianCalendar.get(gregorianCalendar.YEAR))
                 .toString();
     }
 
@@ -286,7 +333,7 @@ public class InitDataService {
         StringBuilder address = new StringBuilder();
 
         // Append random street name
-        address.append(streetNames.get(random.nextInt(streetNames.size()))).append(";");
+        address.append(stringGenerator(streetNames)).append(";");
         // Append random building number
         address.append(random.nextInt(150)).append(";");
         // Append random local number
@@ -310,10 +357,33 @@ public class InitDataService {
         }
 
         // Append random city
-        address.append(cities.get(random.nextInt(cities.size())));
+        address.append(stringGenerator(cities));
 
         // Return address
         return address.toString();
+    }
+
+    /**
+     * Level of education generator - return random value of LevelOfEducation
+     * enum
+     *
+     * @return
+     */
+    private LevelOfEducation levelOfEducationGenerator() {
+        return LevelOfEducation.values()[random.nextInt(LevelOfEducation.values().length)];
+    }
+
+    /**
+     * Education title generator - return random value of EducationTitle enum
+     *
+     * @return
+     */
+    private EducationTitle educationTitleGenerator() {
+        return EducationTitle.values()[random.nextInt(EducationTitle.values().length)];
+    }
+
+    private String educationDatesGenerator() {
+        return new StringBuilder(dateGenerator() + ";" + dateGenerator()).toString();
     }
 
     ////////////////////////////////////////////////////////////
@@ -352,13 +422,38 @@ public class InitDataService {
             "The Drive", "North Road", "Stanley Road", "Chester Road", "Mill Road"
     );
     List<String> cities = Arrays.asList(
-            "Aberdeen", "Armagh", "Bangor", "Bath", "Belfast", "Birmingham", "Bradford", "Brighton & Hove", "Bristol", "Cambridge",
-            "Canterbury", "Cardiff", "Carlisle", "Chelmsford", "Chester", "Chichester", "Coventry", "Derby", "Derry", "Dundee",
-            "Durham", "Edinburgh", "Ely", "Exeter", "Glasgow", "Gloucester", "Hereford", "Inverness", "Kingston upon Hull", "Lancaster",
-            "Leeds", "Leicester", "Lichfield", "Lincoln", "Lisborn", "Liverpool", "City of London", "Manchaster", "Newcastle upon Tyne", "Newport",
-            "Newry", "Norwich", "Nottingham", "Oxford", "Perth", "Peterborough", "Plymouth", "Portsmouth", "Preston", "Ripon",
-            "St Albans", "St Asaph", "St David's", "Salford", "Salisbury", "Sheffield", "Southampton", "Stirling", "Stoke-on-Trent", "Sunderland",
-            "Swansea", "Truro", "Wakefield", "Wells", "City of Westminster", "Winchester", "Wolverhampton", "Worcester", "York"
+            "Aberdeen", "Armagh", "Bangor", "Bath", "Belfast", "Birmingham", "Bradford", "Brighton & Hove",
+            "Bristol", "Cambridge", "Canterbury", "Cardiff", "Carlisle", "Chelmsford", "Chester", "Chichester",
+            "Coventry", "Derby", "Derry", "Dundee", "Durham", "Edinburgh", "Ely", "Exeter",
+            "Glasgow", "Gloucester", "Hereford", "Inverness", "Kingston upon Hull", "Lancaster", "Leeds", "Leicester",
+            "Lichfield", "Lincoln", "Lisborn", "Liverpool", "City of London", "Manchaster", "Newcastle upon Tyne", "Newport",
+            "Newry", "Norwich", "Nottingham", "Oxford", "Perth", "Peterborough", "Plymouth", "Portsmouth",
+            "Preston", "Ripon", "St Albans", "St Asaph", "St David's", "Salford", "Salisbury", "Sheffield",
+            "Southampton", "Stirling", "Stoke-on-Trent", "Sunderland", "Swansea", "Truro", "Wakefield", "Wells",
+            "City of Westminster", "Winchester", "Wolverhampton", "Worcester", "York"
     );
-
+    List<String> schools = Arrays.asList(
+            "Balliol Lower School", "Christopher Reeves VA Lower School", "The Hills Academy", "Lakeview School", "Shackleton Primary School",
+            "Mark Rutherford School", "Bedford Academy", "Beauchamp Middle School", "St Gregory's Roman Catholic Middle School", "Westfield School",
+            "Fox Primary School", "St Mary's RC Primary School", "Thomas Jones Primary School", "Chelsea Academy", "Beddington Infants' School",
+            "Robin Hood Junior School", "Stanley Park Junior School", "Cheam High School", "Wilson's School", "Sherwood Park School",
+            "Hallfield Primary School", "King Solomon Academy", "St Luke's CE Primary School", "Queen's Park Primary School", "Paddington Academy",
+            "Westminster Academy", "Queen Elizabeth II Jubilee School", "City of Westminster College", "Westminster Kingsway College", "Albert Bradbeer Primary School",
+            "Arden Primary School", "Birches Green Infant School", "Gossey Lane Junior & Infant & Nursery School", "James Watt Primary School", "Wattville Primary School",
+            "Cherry Oak School", "James Brindley School", "Victoria School", "Queensbury School", "Birmingham Metropolitan College",
+            "Fircroft College", "Joseph Chamberlain Sixth Form College", "Bournville College", "Norfolk House School", "Green Heath School",
+            "York College", "Askham Bryan College", "Huntington School", "York High School", "Manor Church of England School"
+    );
+    List<String> subjects = Arrays.asList(
+            "Veterinary Medicine", "Farm Management", "Astronomy", "Biology", "Chemistry", "Earth Sciences", "Environmental Sciences", "Food Science and Technology",
+            "Physical Geography", "Life Sciences", "Material Sciences", "Mathematics", "Physics", "Sports Science", "Architecture", "Built Environment",
+            "Construction", "Planning", "Accounting", "Business Studies", "E-Commerce", "Finance", "Human Resources Management", "Management",
+            "Marketing", "Office Administration", "Transportation and Logistics", "Computer Science", "Computing", "IT", "Multimedia", "Software",
+            "Art", "Graphic Design", "Interior Design", "Music", "Theatre and Drama Studies", "Adult Education", "Childhood Education", "Pedagogy",
+            "Electronic Engineering", "Electrical Engineering", "Mechanical Engineering", "Power and Energy Engineering", "Telecommunications", "Vehicle Engineering", "Massage", "Health and Fitness",
+            "Complementary Health", "Dentistry", "Health Studies", "Health and Safety", "Medicine", "Nursing", "Pharmacology", "Physiology",
+            "Physiotherapy", "Psychology", "Archaeology", "Cultural Studies", "History", "Languages", "Literature", "Philosophy",
+            "Religious Studies", "Civil Law", "Criminal Law", "Public Law", "Economics", "Politics", "Sociology", "Photography",
+            "Journalism", "Hotel Management", "Travel and Tourism", "Media", "Linguistics", "International relations", "Legal Advice", "Ophthalmology"
+    );
 }
