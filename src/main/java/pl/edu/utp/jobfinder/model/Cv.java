@@ -272,9 +272,9 @@ public class Cv implements Serializable {
         if (schools != null && !schools.isEmpty()) {
             cv.append("Education");
             for (int i = 1; i <= schools.size(); i++) {
-                cv.append("\nSchool ").append(i).append(": ").append(schools.get(i - 1)).append("\n");
-                cv.append("Subject: ").append(subjects.get(i - 1)).append("\n");
-                cv.append("Dates: ");
+                cv.append("\nSchool ").append(i).append(": ").append(schools.get(i - 1));
+                cv.append("\nSubject: ").append(subjects.get(i - 1));
+                cv.append("\nDates: ");
                 StringTokenizer tokenizer = new StringTokenizer(educationDates.get(i - 1), ";");
                 while (tokenizer.hasMoreTokens()) {
                     cv.append(tokenizer.nextToken()).append(" ");
@@ -283,11 +283,11 @@ public class Cv implements Serializable {
         }
 
         if (employers != null && !employers.isEmpty()) {
-            cv.append("\n\nExperience\n");
+            cv.append("\n\nExperience");
             for (int i = 1; i <= employers.size(); i++) {
-                cv.append("Employee ").append(i).append(": ").append(employers.get(i - 1));
-                cv.append("Position: ").append(positions.get(i - 1));
-                cv.append("Dates: ");
+                cv.append("\nEmployee ").append(i).append(": ").append(employers.get(i - 1));
+                cv.append("\nPosition: ").append(positions.get(i - 1));
+                cv.append("\nDates: ");
                 StringTokenizer tokenizer = new StringTokenizer(experienceDates.get(i - 1), ";");
                 while (tokenizer.hasMoreTokens()) {
                     cv.append(tokenizer.nextToken()).append(" ");
