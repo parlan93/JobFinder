@@ -2,6 +2,7 @@ package pl.edu.utp.jobfinder.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 import javax.annotation.PostConstruct;
@@ -108,6 +109,11 @@ public class InitDataService {
         boolean sout = true;
         for (AppUser user : users) {
             Cv cv = user.getCv();
+
+            cv.setBirthDate(fullDateGenerator());
+            cv.setPhone(phoneNumberGenerator());
+            cv.setAddress(addressGenerator());
+
             if (sout) {
                 System.out.println(cv.toString());
                 sout = false;
@@ -196,6 +202,120 @@ public class InitDataService {
         return password.toString();
     }
 
+    /**
+     * Full date generator - generate random date from year range (1950, 1995)
+     *
+     * @return
+     */
+    private String fullDateGenerator() {
+        return fullDateGenerator(1950, 1995);
+    }
+
+    /**
+     * Full date generator - generate random date from year range
+     *
+     * @param yearFrom
+     * @param yearTo
+     * @return
+     */
+    private String fullDateGenerator(int yearFrom, int yearTo) {
+        // Create random gregorian calendar
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.set(gregorianCalendar.YEAR, random.nextInt(yearTo - yearFrom) + yearFrom);
+        gregorianCalendar.set(gregorianCalendar.DAY_OF_YEAR, random.nextInt(gregorianCalendar.getActualMaximum(gregorianCalendar.DAY_OF_YEAR)));
+
+        // Create and return string from gregorian calendar
+        StringBuilder stringBuilder = new StringBuilder();
+        return stringBuilder
+                .append(gregorianCalendar.get(gregorianCalendar.DAY_OF_MONTH))
+                .append("/").append(gregorianCalendar.get(gregorianCalendar.MONTH))
+                .append("/").append(gregorianCalendar.get(gregorianCalendar.YEAR))
+                .toString();
+    }
+
+    /**
+     * Phone number generator - generate random phone number with separator
+     *
+     * @return
+     */
+    private String phoneNumberGenerator() {
+        // Create new string of phone nubmer
+        StringBuilder phoneNumber = new StringBuilder();
+
+        // Generate 3 parts of number with separator
+        for (int i = 0; i < 3; i++) {
+            // Append 3 first numbers of phone number
+            if (i == 0) {
+                // Append value of first number part which must be higher than 100
+                phoneNumber.append(random.nextInt(900) + 100);
+            } else {
+                // Generate random value
+                int phoneNumberPart = random.nextInt(1000);
+                // Check that number is lower than 10
+                if (phoneNumberPart < 10) {
+                    // Append 2 zeros and phone number part
+                    phoneNumber.append("00").append(phoneNumberPart);
+                    // Check that number is lower than 100
+                } else if (phoneNumberPart < 100) {
+                    // Append zero and phone number part
+                    phoneNumber.append("0").append(phoneNumberPart);
+                } else {
+                    // Add phone number part
+                    phoneNumber.append(phoneNumberPart);
+                }
+            }
+            // Check which number part is generate now
+            if (i < 2) {
+                // Append "-" separator if part is different than last
+                phoneNumber.append("-");
+            }
+        }
+
+        // Return random phone number
+        return phoneNumber.toString();
+    }
+
+    /**
+     * Address Generator - generate random address based on list of streets,
+     * cities and random numbers
+     *
+     * @return
+     */
+    private String addressGenerator() {
+        // Create new address
+        StringBuilder address = new StringBuilder();
+
+        // Append random street name
+        address.append(streetNames.get(random.nextInt(streetNames.size()))).append(";");
+        // Append random building number
+        address.append(random.nextInt(150)).append(";");
+        // Append random local number
+        address.append(random.nextInt(150)).append(";");
+
+        // Append random postal code
+        int postCodePart;
+        postCodePart = random.nextInt(100);
+        if (postCodePart < 10) {
+            address.append("0").append(postCodePart).append("-");
+        } else {
+            address.append(postCodePart).append("-");
+        }
+        postCodePart = random.nextInt(1000);
+        if (postCodePart < 10) {
+            address.append("00").append(postCodePart).append(";");
+        } else if (postCodePart < 100) {
+            address.append("0").append(postCodePart).append(";");
+        } else {
+            address.append(postCodePart).append(";");
+        }
+
+        // Append random city
+        address.append(cities.get(random.nextInt(cities.size())));
+
+        // Return address
+        return address.toString();
+    }
+
     ////////////////////////////////////////////////////////////
     /// Possible data to generate
     ////////////////////////////////////////////////////////////
@@ -218,6 +338,27 @@ public class InitDataService {
             "hushmail.com", "icloud.com", "lycos.com", "mail.com", "mail.ru",
             "mailfence.com", "outlook.com", "protonmail.com", "rackspace.com", "rediff.com",
             "runbox.com", "tutanota.com", "yahoo.com", "yandex.com", "zohocorp.com"
+    );
+    List<String> streetNames = Arrays.asList(
+            "High Street", "Station Road", "Main Street", "Park Road", "Church Road",
+            "Church Street", "London Road", "Victoria Road", "Green Lane", "Manor Road",
+            "Church Lane", "Park Avenue", "The Avenue", "The Crescent", "Queens Road",
+            "New Road", "Grange Road", "Kings Road", "Kingsway", "Windsor Road",
+            "Highfield Road", "Mill Lane", "Alexander Road", "York Road", "St. John's Road",
+            "Main Road", "Broadway", "King Street", "The Green", "Springfield Road",
+            "Georg Street", "Park Lane", "Victoria Street", "Albert Road", "Queensway",
+            "New Street", "Queen Street", "West Street", "North Street", "Manchaster Road",
+            "The Groove", "Richmond Road", "Grove Road", "South Street", "School Lane",
+            "The Drive", "North Road", "Stanley Road", "Chester Road", "Mill Road"
+    );
+    List<String> cities = Arrays.asList(
+            "Aberdeen", "Armagh", "Bangor", "Bath", "Belfast", "Birmingham", "Bradford", "Brighton & Hove", "Bristol", "Cambridge",
+            "Canterbury", "Cardiff", "Carlisle", "Chelmsford", "Chester", "Chichester", "Coventry", "Derby", "Derry", "Dundee",
+            "Durham", "Edinburgh", "Ely", "Exeter", "Glasgow", "Gloucester", "Hereford", "Inverness", "Kingston upon Hull", "Lancaster",
+            "Leeds", "Leicester", "Lichfield", "Lincoln", "Lisborn", "Liverpool", "City of London", "Manchaster", "Newcastle upon Tyne", "Newport",
+            "Newry", "Norwich", "Nottingham", "Oxford", "Perth", "Peterborough", "Plymouth", "Portsmouth", "Preston", "Ripon",
+            "St Albans", "St Asaph", "St David's", "Salford", "Salisbury", "Sheffield", "Southampton", "Stirling", "Stoke-on-Trent", "Sunderland",
+            "Swansea", "Truro", "Wakefield", "Wells", "City of Westminster", "Winchester", "Wolverhampton", "Worcester", "York"
     );
 
 }
