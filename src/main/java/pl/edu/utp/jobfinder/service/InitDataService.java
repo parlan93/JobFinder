@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.edu.utp.jobfinder.enumerator.EducationTitle;
+import pl.edu.utp.jobfinder.enumerator.LanguageLevel;
 import pl.edu.utp.jobfinder.enumerator.LevelOfEducation;
+import pl.edu.utp.jobfinder.enumerator.SkillLevel;
 import pl.edu.utp.jobfinder.model.AppUser;
 import pl.edu.utp.jobfinder.model.Cv;
 import pl.edu.utp.jobfinder.repository.AppUserRepository;
@@ -105,17 +107,27 @@ public class InitDataService {
         return appUsers;
     }
 
-    // TODO : CV Generator
+    /**
+     * Generate CVs - generate random CV for every user
+     * 
+     * @param users
+     * @return 
+     */
     private List<Cv> generateCVs(List<AppUser> users) {
+        // Create new list of cvs
         List<Cv> cvs = new ArrayList<>();
-        boolean sout = true;
+
+        // Go through every user in users list
         for (AppUser user : users) {
+            // Get user cv
             Cv cv = user.getCv();
 
+            // Generate and set personal information
             cv.setBirthDate(fullDateGenerator());
             cv.setPhone(phoneNumberGenerator());
             cv.setAddress(addressGenerator());
 
+            // Generate and set information about education
             cv.setLevelOfEducation(levelOfEducationGenerator());
             cv.setEducationTitle(educationTitleGenerator());
             int cvNumberOfSchools = random.nextInt(3);
@@ -130,7 +142,8 @@ public class InitDataService {
             cv.setSchools(cvSchools);
             cv.setSubjects(cvSubjects);
             cv.setEducationDates(cvEducationDates);
-            
+
+            // Generate and set information about experience
             int cvNumberOfEmployers = random.nextInt(3);
             List<String> cvEmployers = new ArrayList<>();
             List<String> cvPositions = new ArrayList<>();
@@ -144,13 +157,61 @@ public class InitDataService {
             cv.setPositions(cvPositions);
             cv.setExperienceDates(cvExperienceDates);
 
-            if (sout) {
-                System.out.println(cv.toString());
-                sout = false;
+            // Generate and set information about skills
+            int numberOfSkills = random.nextInt(8);
+            List<String> cvSkills = new ArrayList<>();
+            List<SkillLevel> cvSkillsLevels = new ArrayList<>();
+            for (int i = 0; i < numberOfSkills; i++) {
+                cvSkills.add(stringGenerator(skills));
+                cvSkillsLevels.add(skillLevelGenerator());
             }
+            cv.setSkills(cvSkills);
+            cv.setSkillsLevels(cvSkillsLevels);
+
+            // Generate and set information about languages
+            int numberOfLanguages = random.nextInt(5);
+            List<String> cvLanguages = new ArrayList<>();
+            List<LanguageLevel> cvLanguagesLevels = new ArrayList<>();
+            for (int i = 0; i < numberOfLanguages; i++) {
+                cvLanguages.add(stringGenerator(languages));
+                cvLanguagesLevels.add(languageLevelGenerator());
+            }
+            cv.setLanguages(cvLanguages);
+            cv.setLanguagesLevels(cvLanguagesLevels);
+
+            // Generate and set information about interests
+            int numberOfInterests = random.nextInt(12);
+            List<String> cvInterests = new ArrayList<>();
+            for (int i = 0; i < numberOfInterests; i++) {
+                cvInterests.add(stringGenerator(interests));
+            }
+            cv.setInterests(cvInterests);
+
+            // Generate and set about
+            int numberOfAboutSentences = random.nextInt(8);
+            StringBuilder cvAbout = new StringBuilder();
+            for (int i = 0; i < numberOfAboutSentences; i++) {
+                int numberOfWordsInSentece = random.nextInt(5) + 3;
+                for (int j = 0; j < numberOfWordsInSentece; j++) {
+                    String word = stringGenerator(about);
+                    if (j == 0) {
+                        cvAbout.append(word.substring(0, 1).toUpperCase()).append(word.substring(1));
+                    } else {
+                        cvAbout.append(word);
+                    }
+                    if ((j + 1) != numberOfWordsInSentece) {
+                        cvAbout.append(" ");
+                    }
+                }
+                cvAbout.append(". ");
+            }
+            cv.setAbout(cvAbout.toString());
+
+            // Add generated information to CV list
             cvs.add(cv);
         }
 
+        // Return CVs
         return cvs;
     }
 
@@ -281,10 +342,12 @@ public class InitDataService {
      * @return
      */
     private String dateGenerator(int yearFrom, int yearTo) {
+        // Create random gregorian calendar
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         gregorianCalendar.set(gregorianCalendar.YEAR, random.nextInt(yearTo - yearFrom) + yearFrom);
         gregorianCalendar.set(gregorianCalendar.MONTH, random.nextInt(12));
 
+        // Create and return string from gregorian calendar
         StringBuilder date = new StringBuilder();
         return date
                 .append(gregorianCalendar.get(gregorianCalendar.MONTH))
@@ -395,8 +458,31 @@ public class InitDataService {
         return EducationTitle.values()[random.nextInt(EducationTitle.values().length)];
     }
 
+    /**
+     * Dates from to generator - return two dates separated by ";"
+     *
+     * @return
+     */
     private String datesFromToGenerator() {
         return new StringBuilder(dateGenerator() + ";" + dateGenerator()).toString();
+    }
+
+    /**
+     * Skill level generator - return random value of SkillLevel enum
+     *
+     * @return
+     */
+    private SkillLevel skillLevelGenerator() {
+        return SkillLevel.values()[random.nextInt(SkillLevel.values().length)];
+    }
+
+    /**
+     * Language level generator - retun random value of LanguageLevel enum
+     *
+     * @return
+     */
+    private LanguageLevel languageLevelGenerator() {
+        return LanguageLevel.values()[random.nextInt(LanguageLevel.values().length)];
     }
 
     ////////////////////////////////////////////////////////////
@@ -438,10 +524,10 @@ public class InitDataService {
             "Aberdeen", "Armagh", "Bangor", "Bath", "Belfast", "Birmingham", "Bradford", "Brighton & Hove",
             "Bristol", "Cambridge", "Canterbury", "Cardiff", "Carlisle", "Chelmsford", "Chester", "Chichester",
             "Coventry", "Derby", "Derry", "Dundee", "Durham", "Edinburgh", "Ely", "Exeter",
-            "Glasgow", "Gloucester", "Hereford", "Inverness", "Lancaster", "Leeds", "Leicester", "Winchester", 
+            "Glasgow", "Gloucester", "Hereford", "Inverness", "Lancaster", "Leeds", "Leicester", "Winchester",
             "Lichfield", "Lincoln", "Lisborn", "Liverpool", "City of London", "Manchaster", "Newcastle upon Tyne", "Newport",
             "Newry", "Norwich", "Nottingham", "Oxford", "Perth", "Peterborough", "Plymouth", "Portsmouth",
-            "Preston", "Ripon", "Salford", "Salisbury", "Sheffield", "Southampton", "Stirling", "Sunderland", 
+            "Preston", "Ripon", "Salford", "Salisbury", "Sheffield", "Southampton", "Stirling", "Sunderland",
             "Swansea", "Truro", "Wakefield", "Wells", "City of Westminster", "Wolverhampton", "Worcester", "York"
     );
     List<String> schools = Arrays.asList( // 50 (10 x 5)
@@ -472,11 +558,11 @@ public class InitDataService {
             "Costco Wholesale", "Google", "REI", "Memorial Hermann Health System", "United Services Automobile Association", "MD Anderson Cancer Center",
             "Penn Medicine", "Mayo Clinic", "City of Austin", "Wegmans Food Markets", "The Container Store", "JetBlue Airways",
             "Facebook", "University of Iowa Hospitals & Clinics", "University of Miami", "Trader Joe's", "QuikTrip", "Winthrop University Hospital",
-            "Genentech", "Sandia National Laboratories", "SAS", "Williams", "Coldwell Banker", "The Christ Hospital Health Network", 
+            "Genentech", "Sandia National Laboratories", "SAS", "Williams", "Coldwell Banker", "The Christ Hospital Health Network",
             "Navy Federal Credit Union", "Four Seasons Hotels and Resorts", "Duke University", "Black & Veatch", "Lee Memorial Health System", "Publix Super Markets",
             "University of Texas Health Science Center at Houston", "WL Gore & Associates", "Intercontinental Hotels Group", "Michelin Group", "Southwest Airlines", "Stater Bros",
             "NASA", "Covenant Health", "H&M", "University of Colorado Health", "H-E-B Grocery Stores", "Promedica",
-            "U.S. Courts", "Vanguard", "Sharp HealthCare", "Garmin", "Methodist Le Bonheur Healthcare", "Kimberly-Clark", 
+            "U.S. Courts", "Vanguard", "Sharp HealthCare", "Garmin", "Methodist Le Bonheur Healthcare", "Kimberly-Clark",
             "Partners HealthCare System", "Microsoft", "Houston Methodist", "UCSF Medical Center", "Cargill", "In-N-Out Burger",
             "Montgomery County Public Schools", "Marathon Petroleum", "Yale New Haven Health", "Sikorsky", "Johns Hopkins University", "LinkedIn"
     );
@@ -489,5 +575,17 @@ public class InitDataService {
             "Nuclear Engineer", "Orthodontist", "Painter", "Paralegal", "Pharmacist", "Photographer", "Physician", "Physicist", "Plumber", "Police Detective",
             "PR Manager", "Private Detective and Investigator", "Production Worker", "Project Manager", "Psychiatrist", "Psychologist", "Recruiter", "Safety Engineer", "School Bus Driver", "Secretary",
             "Sheriff", "Singer", "Sociologist", "Stripper", "Teacher", "Telemarketer", "Tour Guide", "Veterinarian", "Waitress", "Webmaster"
+    );
+    List<String> skills = Arrays.asList( // TODO : skills
+            "A", "B", "C"
+    );
+    List<String> languages = Arrays.asList( // TODO : languages
+            "A", "B", "C"
+    );
+    List<String> interests = Arrays.asList( // TODO : interests
+            "A", "B", "C"
+    );
+    List<String> about = Arrays.asList( // TODO : about
+            "lorem", "ipsum", "dolor", "sit", "amet"
     );
 }
