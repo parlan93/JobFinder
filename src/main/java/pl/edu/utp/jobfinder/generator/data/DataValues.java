@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.edu.utp.jobfinder.generator.data;
 
 import java.util.Arrays;
@@ -10,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author bskibinski
+ * @author Bartłomiej Skibiński
  */
 public abstract class DataValues {
 
@@ -112,7 +107,13 @@ public abstract class DataValues {
     private static final List<String> interests = Arrays.asList( // TODO : interests
             "A", "B", "C"
     );
-    private static final List<String> about = Arrays.asList( // TODO : about
+    private static final List<String> words = Arrays.asList( // TODO : words
+            "lorem", "ipsum", "dolor", "sit", "amet"
+    );
+    private static final List<String> requirementsAndAdvantages = Arrays.asList( // TODO : requirementsAndAdvantages
+            "lorem", "ipsum", "dolor", "sit", "amet"
+    );
+    private static final List<String> businessCategories = Arrays.asList( // TODO : businessCategories
             "lorem", "ipsum", "dolor", "sit", "amet"
     );
 
@@ -165,10 +166,16 @@ public abstract class DataValues {
         return interests;
     }
 
-    public static List<String> getAbout() {
-        return about;
+    public static List<String> getWords() {
+        return words;
     }
 
-    
+    public static List<String> getRequirementsAndAdvantages() {
+        return requirementsAndAdvantages;
+    }
+
+    public static List<String> getBusinessCategories() {
+        return businessCategories;
+    }
 
 }

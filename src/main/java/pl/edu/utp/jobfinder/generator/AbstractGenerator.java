@@ -1,17 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.edu.utp.jobfinder.generator;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
+import pl.edu.utp.jobfinder.generator.data.DataValues;
 
 /**
  *
- * @author bskibinski
+ * @author Bartłomiej Skibiński
  */
 public abstract class AbstractGenerator {
 
@@ -108,5 +105,67 @@ public abstract class AbstractGenerator {
     protected String datesFromToGenerator() {
         return new StringBuilder(dateGenerator() + ";" + dateGenerator()).toString();
     }
-    
+
+    /**
+     * Description generator - generate and returns random number of sentences
+     * with random number of words
+     *
+     * @return
+     */
+    protected String descriptionsGenerator() {
+        // Get random number of sentences
+        int numberOfSentences = random.nextInt(8);
+        // Create new description
+        StringBuilder description = new StringBuilder();
+
+        // Generate sentences
+        for (int i = 0; i < numberOfSentences; i++) {
+            // Get random number of words in each sentence
+            int numberOfWords = random.nextInt(5) + 3;
+
+            // Generate words
+            for (int j = 0; j < numberOfWords; j++) {
+                // Get random word
+                String word = stringGenerator(DataValues.getWords());
+                // Check that this word is first in sentence
+                if (j == 0) {
+                    // Edit first letter of word to uppercase
+                    description.append(word.substring(0, 1)).append(word.substring(1));
+                } else {
+                    description.append(word);
+                }
+                // Check that this word is not last in sentence
+                if ((j + 1) != numberOfWords) {
+                    description.append(" ");
+                }
+            }
+            // Add dot in the end of sentence
+            description.append(". ");
+        }
+
+        // Return description
+        return description.toString();
+    }
+
+    /**
+     * List of strings generator - generate simple list of random string based
+     * on declared data source
+     *
+     * @param dataSource
+     * @param amount
+     * @return
+     */
+    protected List<String> listOfStringsGenerator(List<String> dataSource, int amount) {
+        // Create new list of strings
+        List<String> list = new ArrayList<>();
+
+        // Generate list
+        for (int i = 0; i < amount; i++) {
+            list.add(stringGenerator(dataSource));
+        }
+
+        // Return list of strings
+        return list;
+    }
+
 }

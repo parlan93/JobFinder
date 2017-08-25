@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.edu.utp.jobfinder.generator.AppUserGenerator;
 import pl.edu.utp.jobfinder.generator.CvGenerator;
+import pl.edu.utp.jobfinder.generator.JobOfferGenerator;
 import pl.edu.utp.jobfinder.model.AppUser;
 import pl.edu.utp.jobfinder.model.Cv;
+import pl.edu.utp.jobfinder.model.JobOffer;
 import pl.edu.utp.jobfinder.repository.AppUserRepository;
 import pl.edu.utp.jobfinder.repository.ApplyRepository;
 import pl.edu.utp.jobfinder.repository.CvRepository;
@@ -44,6 +46,8 @@ public class InitDataService {
     private AppUserGenerator appUserGenerator;
     @Autowired
     private CvGenerator cvGenerator;
+    @Autowired
+    private JobOfferGenerator jobOfferGenerator;
     
     // Random object to generate values
     Random random = new Random();
@@ -65,6 +69,7 @@ public class InitDataService {
 //        List<AppUser> appUsers = appUserGenerator.generateAppUsers(random.nextInt(50) + 50);
         List<AppUser> appUsers = appUserGenerator.generateAppUsers(5);
         List<Cv> cvs = cvGenerator.generateCVs(appUsers);
+        List<JobOffer> jobOffers = jobOfferGenerator.generateJobOffers(5);
         
         for (Cv cv : cvs) {
             System.out.println(cv.toString());
@@ -84,17 +89,5 @@ public class InitDataService {
         messageRepository.deleteAll();
         userRoleRepository.deleteAll();
     }
-
-    ////////////////////////////////////////////////////////////
-    /// Data generators
-    ////////////////////////////////////////////////////////////    
-
-    ////////////////////////////////////////////////////////////
-    /// Values generators
-    ////////////////////////////////////////////////////////////
-
-    ////////////////////////////////////////////////////////////
-    /// Possible data to generate
-    ////////////////////////////////////////////////////////////
 
 }

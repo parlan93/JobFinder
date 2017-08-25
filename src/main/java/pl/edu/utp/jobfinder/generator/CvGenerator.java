@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.edu.utp.jobfinder.generator;
 
 import java.util.ArrayList;
@@ -18,7 +13,7 @@ import pl.edu.utp.jobfinder.model.Cv;
 
 /**
  *
- * @author bskibinski
+ * @author Bartłomiej Skibiński
  */
 @Service
 public class CvGenerator extends AbstractGenerator {
@@ -100,33 +95,9 @@ public class CvGenerator extends AbstractGenerator {
             cv.setLanguages(cvLanguages);
             cv.setLanguagesLevels(cvLanguagesLevels);
 
-            // Generate and set information about interests
-            int numberOfInterests = random.nextInt(12);
-            List<String> cvInterests = new ArrayList<>();
-            for (int i = 0; i < numberOfInterests; i++) {
-                cvInterests.add(stringGenerator(DataValues.getInterests()));
-            }
-            cv.setInterests(cvInterests);
-
-            // Generate and set about
-            int numberOfAboutSentences = random.nextInt(8);
-            StringBuilder cvAbout = new StringBuilder();
-            for (int i = 0; i < numberOfAboutSentences; i++) {
-                int numberOfWordsInSentece = random.nextInt(5) + 3;
-                for (int j = 0; j < numberOfWordsInSentece; j++) {
-                    String word = stringGenerator(DataValues.getAbout());
-                    if (j == 0) {
-                        cvAbout.append(word.substring(0, 1).toUpperCase()).append(word.substring(1));
-                    } else {
-                        cvAbout.append(word);
-                    }
-                    if ((j + 1) != numberOfWordsInSentece) {
-                        cvAbout.append(" ");
-                    }
-                }
-                cvAbout.append(". ");
-            }
-            cv.setAbout(cvAbout.toString());
+            // Generate and set information about interests and self description
+            cv.setInterests(listOfStringsGenerator(DataValues.getInterests(), random.nextInt(12)));
+            cv.setAbout(descriptionsGenerator());
 
             // Add generated information to CV list
             cvs.add(cv);
