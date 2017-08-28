@@ -2,6 +2,7 @@ package pl.edu.utp.jobfinder.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +30,7 @@ public class Message implements Serializable {
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date date;
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = AppUser.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = AppUser.class, cascade = {CascadeType.ALL})
     private AppUser user;
 
     // Constructors

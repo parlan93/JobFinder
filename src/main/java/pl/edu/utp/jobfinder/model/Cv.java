@@ -272,10 +272,10 @@ public class Cv implements Serializable {
 
         // Education information - title and level of education
         if (levelOfEducation != null) {
-            cv.append("Level of education: ").append(levelOfEducation.getName()).append("\n");
+            cv.append("Level of education: ").append(levelOfEducation.getLevelOfEducationEN()).append("\n");
         }
         if (educationTitle != null) {
-            cv.append("Education title: ").append(educationTitle.getTitle()).append("\n\n");
+            cv.append("Education title: ").append(educationTitle.getTitleEN()).append("\n\n");
         }
 
         // Education information - Schools
@@ -310,7 +310,7 @@ public class Cv implements Serializable {
         if (skills != null && !skills.isEmpty()) {
             cv.append("\n\nSkills\n");
             for (int i = 0; i < skills.size(); i++) {
-                cv.append(skills.get(i)).append(" - ").append(skillsLevels.get(i).getSkillLevel()).append("\n");
+                cv.append(skills.get(i)).append(" - ").append(skillsLevels.get(i).getSkillLevelEN()).append("\n");
             }
         }
 

@@ -1,6 +1,7 @@
 package pl.edu.utp.jobfinder.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import pl.edu.utp.jobfinder.enumerator.UserRole;
 
@@ -31,7 +33,10 @@ public class AppUser implements Serializable {
     private String email;
     @Column(nullable = false)
     private String password;
-    @OneToOne(fetch = FetchType.EAGER, targetEntity = Cv.class)
+//    @OneToOne(fetch = FetchType.EAGER, targetEntity = Cv.class, cascade = {CascadeType.MERGE})
+    @OneToOne
+    @JoinColumn
+    // TODO : Cv Annotation
     private Cv cv;
     @Enumerated(EnumType.STRING)
     private UserRole role;

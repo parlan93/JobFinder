@@ -7,21 +7,27 @@ package pl.edu.utp.jobfinder.enumerator;
 public enum SkillLevel {
 
     // Options
-    ELEMENTARY("Podstawowy"),
-    INTERMEDIATE("Średnio-zaawansowany"),
-    ADVANCED("Zaawansowany");
+    ELEMENTARY("Podstawowy", "Elementary"),
+    INTERMEDIATE("Średnio-zaawansowany", "Intermediate"),
+    ADVANCED("Zaawansowany", "Advanced");
 
     // Fields
-    private String skillLevel;
+    private final String skillLevelPL;
+    private final String skillLevelEN;
 
     // Constructor
-    private SkillLevel(String skillLevel) {
-        this.skillLevel = skillLevel;
+    private SkillLevel(String skillLevelPL, String skillLevelEN) {
+        this.skillLevelPL = skillLevelPL;
+        this.skillLevelEN = skillLevelEN;
     }
 
     // Getter
-    public String getSkillLevel() {
-        return skillLevel;
+    public String getSkillLevelPL() {
+        return skillLevelPL;
+    }
+
+    public String getSkillLevelEN() {
+        return skillLevelEN;
     }
 
 }

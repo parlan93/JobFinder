@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
+import org.springframework.beans.factory.annotation.Autowired;
 import pl.edu.utp.jobfinder.generator.data.DataValues;
+import pl.edu.utp.jobfinder.repository.AppUserRepository;
+import pl.edu.utp.jobfinder.repository.ApplyRepository;
+import pl.edu.utp.jobfinder.repository.CvRepository;
+import pl.edu.utp.jobfinder.repository.JobOfferRepository;
+import pl.edu.utp.jobfinder.repository.MessageRepository;
 
 /**
  *
@@ -12,8 +18,22 @@ import pl.edu.utp.jobfinder.generator.data.DataValues;
  */
 public abstract class AbstractGenerator {
 
+    // Repositories
+    @Autowired
+    protected AppUserRepository appUserRepository;
+    @Autowired
+    protected ApplyRepository applyRepository;
+    @Autowired
+    protected CvRepository cvRepository;
+    @Autowired
+    protected JobOfferRepository jobOfferRepository;
+    @Autowired
+    protected MessageRepository messageRepository;
+    
+    // Object needed to generate random values
     protected final Random random;
 
+    // Constructor
     protected AbstractGenerator() {
         this.random = new Random();
     }

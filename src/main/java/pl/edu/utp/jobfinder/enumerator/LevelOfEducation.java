@@ -7,24 +7,30 @@ package pl.edu.utp.jobfinder.enumerator;
 public enum LevelOfEducation {
 
     // Options
-    NONE("Brak"),
-    ELEMENTARY("Podstawowe"),
-    INTERMEDIATE("Gimnazjalne"),
-    VOCATIONAL("Zawodowe"),
-    SECONDARY("Średnie"),
-    HIGHER("Wyższe");
+    NONE("Brak", "None"),
+    ELEMENTARY("Podstawowe", "Elementary"),
+    INTERMEDIATE("Gimnazjalne", "Intermediate"),
+    VOCATIONAL("Zawodowe", "Vocational"),
+    SECONDARY("Średnie", "Secondary"),
+    HIGHER("Wyższe", "Higher");
 
     // Fields
-    private String name;
+    private final String levelOfEducationPL;
+    private final String levelOfEducationEN;
 
     // Constructors
-    private LevelOfEducation(String name) {
-        this.name = name;
+    private LevelOfEducation(String levelOfEducationPL, String levelOfEducationEN) {
+        this.levelOfEducationPL = levelOfEducationPL;
+        this.levelOfEducationEN = levelOfEducationEN;
     }
 
     // Getter
-    public String getName() {
-        return name;
+    public String getLevelOfEducationPL() {
+        return levelOfEducationPL;
+    }
+
+    public String getLevelOfEducationEN() {
+        return levelOfEducationEN;
     }
 
 }

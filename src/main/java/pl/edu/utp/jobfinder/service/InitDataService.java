@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.edu.utp.jobfinder.generator.AppUserGenerator;
+import pl.edu.utp.jobfinder.generator.ApplyGenerator;
 import pl.edu.utp.jobfinder.generator.CvGenerator;
 import pl.edu.utp.jobfinder.generator.JobOfferGenerator;
 import pl.edu.utp.jobfinder.model.AppUser;
+import pl.edu.utp.jobfinder.model.Apply;
 import pl.edu.utp.jobfinder.model.Cv;
 import pl.edu.utp.jobfinder.model.JobOffer;
 import pl.edu.utp.jobfinder.repository.AppUserRepository;
@@ -45,6 +47,8 @@ public class InitDataService {
     private CvGenerator cvGenerator;
     @Autowired
     private JobOfferGenerator jobOfferGenerator;
+    @Autowired
+    private ApplyGenerator applyGenerator;
     
     // Random object to generate values
     Random random = new Random();
@@ -63,14 +67,22 @@ public class InitDataService {
         deleteExistingData();
 
         // Generate new data
-//        List<AppUser> appUsers = appUserGenerator.generateAppUsers(random.nextInt(50) + 50);
+        
+        // TODO : Save appUsers
         List<AppUser> appUsers = appUserGenerator.generateAppUsers(5);
-        List<Cv> cvs = cvGenerator.generateCVs(appUsers);
+
+        // TODO : Save cvs
+        List<Cv> cvs = cvGenerator.generateCVs(appUserRepository.findAll());
+        
+        // TODO : Save jobOffers
         List<JobOffer> jobOffers = jobOfferGenerator.generateJobOffers(5);
         
-        for (JobOffer cv : jobOffers) {
-            System.out.println(cv.toString());
-        }
+        // TODO : Save applies
+        //List<Apply> applies = applyGenerator.generateApplies(3);
+        
+//        for (Apply cv : applies) {
+//            System.out.println(cv.toString());
+//        }
 
     }
 

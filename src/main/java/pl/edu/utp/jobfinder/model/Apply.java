@@ -1,13 +1,16 @@
 package pl.edu.utp.jobfinder.model;
 
 import java.io.Serializable;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import pl.edu.utp.jobfinder.enumerator.ApplyStatus;
 
 /**
  *
@@ -20,12 +23,12 @@ public class Apply implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = JobOffer.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = JobOffer.class, cascade = {CascadeType.ALL})
     private JobOffer jobOffer;
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Cv.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Cv.class, cascade = {CascadeType.ALL})
     private Cv cv;
-    @Column(nullable = false)
-    private int isPositive; // 0 - Neutral // -1 - Negative // 1 - Positive
+    @Enumerated(EnumType.STRING)
+    private ApplyStatus applyStatus;
 
     // Constructors
     public Apply() {
@@ -34,7 +37,7 @@ public class Apply implements Serializable {
     public Apply(JobOffer jobOffer, Cv cv) {
         this.jobOffer = jobOffer;
         this.cv = cv;
-        this.isPositive = 0;
+        this.applyStatus = ApplyStatus.NEUTRAL;
     }
 
     // Getters and setters
@@ -58,12 +61,34 @@ public class Apply implements Serializable {
         this.cv = cv;
     }
 
-    public int getIsPositive() {
-        return isPositive;
+    public ApplyStatus getApplyStatus() {
+        return applyStatus;
     }
 
-    public void setIsPositive(int isPositive) {
-        this.isPositive = isPositive;
+    public void setApplyStatus(ApplyStatus applyStatus) {
+        this.applyStatus = applyStatus;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder apply = new StringBuilder();
+
+        apply.append("Apply\n\n");
+
+        apply.append("Job Offer: ").append(jobOffer.getPosition()).append("\n");
+        apply.append("Company: ").append(jobOffer.getCompany()).append("\n");
+        apply.append("City: ").append(jobOffer.getCity()).append("\n");
+        apply.append("Work Time: ").append(jobOffer.getWorkTime().getWorkTimeEN()).append("\n");
+        apply.append("Added: ").append(jobOffer.getDate()).append("\n\n");
+
+        apply.append("Applicant: ").append(cv.getFirstname()).append(" ").append(cv.getLastname()).append("\n");
+        apply.append("Birth: ").append(cv.getBirthDate()).append("\n");
+        apply.append("Address: ").append(cv.getAddress()).append("\n");
+        apply.append("Phone: ").append(cv.getPhone()).append("\n\n");
+
+        apply.append("Status: ").append(applyStatus.getApplyStatusEN()).append("\n");
+
+        return apply.toString();
     }
 
 }

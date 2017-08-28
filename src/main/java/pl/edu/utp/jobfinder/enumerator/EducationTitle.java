@@ -12,24 +12,30 @@ package pl.edu.utp.jobfinder.enumerator;
 public enum EducationTitle {
 
     // Options
-    NONE("Brak"),
-    BACHELOR("Licencjat"),
-    ENGINEER("Inżynier"),
-    MASTER("Magister"),
-    DOCTOR("Doktor"),
-    PROFESSOR("Profesor");
+    NONE("Brak", "None"),
+    BACHELOR("Licencjat", "Bachelor"),
+    ENGINEER("Inżynier", "Engineer"),
+    MASTER("Magister", "Master"),
+    DOCTOR("Doktor", "Doctor"),
+    PROFESSOR("Profesor", "Professor");
 
     // Fields
-    private String title;
+    private final String titlePL;
+    private final String titleEN;
 
     // Constructors
-    private EducationTitle(String title) {
-        this.title = title;
+    private EducationTitle(String titlePL, String titleEN) {
+        this.titlePL = titlePL;
+        this.titleEN = titleEN;
     }
 
     // Getter
-    public String getTitle() {
-        return title;
+    public String getTitlePL() {
+        return titlePL;
+    }
+
+    public String getTitleEN() {
+        return titleEN;
     }
 
 }
