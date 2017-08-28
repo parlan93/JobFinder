@@ -23,7 +23,7 @@ import pl.edu.utp.jobfinder.enumerator.SkillLevel;
 @Entity
 public class Cv implements Serializable {
 
-    // Fields
+    // Fields - Personal information
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -37,6 +37,7 @@ public class Cv implements Serializable {
     private String email;
     private String address;
 
+    // Fields - Education
     @Enumerated(EnumType.STRING)
     private LevelOfEducation levelOfEducation;
     @Enumerated(EnumType.STRING)
@@ -48,6 +49,7 @@ public class Cv implements Serializable {
     @ElementCollection(targetClass = String.class)
     private List<String> educationDates;
 
+    // Fields - Experience
     @ElementCollection(targetClass = String.class)
     private List<String> employers;
     @ElementCollection(targetClass = String.class)
@@ -55,16 +57,19 @@ public class Cv implements Serializable {
     @ElementCollection(targetClass = String.class)
     private List<String> experienceDates;
 
+    // Fields - Skills
     @ElementCollection(targetClass = String.class)
     private List<String> skills;
     @ElementCollection(targetClass = SkillLevel.class)
     private List<SkillLevel> skillsLevels;
 
+    // Fields - languages
     @ElementCollection(targetClass = String.class)
     private List<String> languages;
     @ElementCollection(targetClass = LanguageLevel.class)
     private List<LanguageLevel> languagesLevels;
 
+    // Fields - Interests and about
     @ElementCollection(targetClass = String.class)
     private List<String> interests;
     private String about;
@@ -244,13 +249,16 @@ public class Cv implements Serializable {
         this.about = about;
     }
 
-    // To string
+    // To String
     @Override
     public String toString() {
+        // Create new CV string
         StringBuilder cv = new StringBuilder();
 
+        // CV header
         cv.append("Curriculum Vitae: ").append(firstname).append(" ").append(lastname).append("\n\n");
 
+        // Personal information - basic
         if (birthDate != null) {
             cv.append("Birthday: ").append(birthDate).append("\n");
         }
@@ -262,6 +270,7 @@ public class Cv implements Serializable {
             cv.append("Address: ").append(address).append("\n\n");
         }
 
+        // Education information - title and level of education
         if (levelOfEducation != null) {
             cv.append("Level of education: ").append(levelOfEducation.getName()).append("\n");
         }
@@ -269,6 +278,7 @@ public class Cv implements Serializable {
             cv.append("Education title: ").append(educationTitle.getTitle()).append("\n\n");
         }
 
+        // Education information - Schools
         if (schools != null && !schools.isEmpty()) {
             cv.append("Education");
             for (int i = 1; i <= schools.size(); i++) {
@@ -282,6 +292,7 @@ public class Cv implements Serializable {
             }
         }
 
+        // Experience information - employers and positions
         if (employers != null && !employers.isEmpty()) {
             cv.append("\n\nExperience");
             for (int i = 1; i <= employers.size(); i++) {
@@ -295,6 +306,7 @@ public class Cv implements Serializable {
             }
         }
 
+        // Skills informaction
         if (skills != null && !skills.isEmpty()) {
             cv.append("\n\nSkills\n");
             for (int i = 0; i < skills.size(); i++) {
@@ -302,6 +314,7 @@ public class Cv implements Serializable {
             }
         }
 
+        // Languages information
         if (languages != null && !languages.isEmpty()) {
             cv.append("\nLanguages\n");
             for (int i = 0; i < languages.size(); i++) {
@@ -309,6 +322,7 @@ public class Cv implements Serializable {
             }
         }
 
+        // Interests information
         if (interests != null && !interests.isEmpty()) {
             cv.append("\nInterests\n");
             for (int i = 0; i < interests.size(); i++) {
@@ -316,10 +330,12 @@ public class Cv implements Serializable {
             }
         }
 
+        // About information
         if (about != null) {
             cv.append("\n\nAbout: ").append(about).append("\n\n");
         }
 
+        // Return CV string
         return cv.toString();
     }
 

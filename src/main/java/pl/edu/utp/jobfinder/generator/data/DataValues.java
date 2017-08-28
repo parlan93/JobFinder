@@ -98,17 +98,41 @@ public abstract class DataValues {
             "PR Manager", "Private Detective and Investigator", "Production Worker", "Project Manager", "Psychiatrist", "Psychologist", "Recruiter", "Safety Engineer", "School Bus Driver", "Secretary",
             "Sheriff", "Singer", "Sociologist", "Stripper", "Teacher", "Telemarketer", "Tour Guide", "Veterinarian", "Waitress", "Webmaster"
     );
-    private static final List<String> skills = Arrays.asList( // TODO : skills
-            "A", "B", "C"
+    private static final List<String> skills = Arrays.asList( // 70 (10 x 7)
+            "Accounting", "Active Listening", "Administrative", "Analytical", "Behavioral", "Business Intelligence", "Business",
+            "Business Storytelling", "Collaboration", "Communication", "Computer", "Conceptual", "Conflict Management", "Conflict Resolution",
+            "Consulting", "Content Strategy", "Creative Thinking", "Critical Thinking", "Customer Service", "Decision Making", "Delegation",
+            "Deductive Reasoning", "Digital Marketing", "Digital Media", "Editing", "Employability", "Entrepreneurial", "Finance",
+            "Flexibility", "General", "Health Care Skills Listed by Job", "Hard Skills", "Life Skills", "Hospitality Industry", "Inductive Reasoning",
+            "Information Technology", "Interpersonal", "Leadership", "Legal", "Listening", "Logical Thinking", "Management",
+            "Marketing", "Microsoft Office Skills", "Motivational", "Multitasking", "Negotiations", "Nonverbal Communication", "Organizational",
+            "Personal", "Persuasive", "Presentation", "Problem Solving", "Public Speaking", "Research", "Retail Industry",
+            "Sales", "Social", "Social Media", "Soft Skills", "Strategic Planning", "Strengths", "Team Building",
+            "Teamwork", "Tech Skills", "Technical", "Time Management", "Transferable", "Verbal Communication", "Writing"
     );
-    private static final List<String> languages = Arrays.asList( // TODO : languages
-            "A", "B", "C"
+    private static final List<String> languages = Arrays.asList( // 25 (5 x 5)
+            "Mandarin", "Spanish", "English", "Hindi", "Arabic",
+            "Portuguese", "Bengali", "Russian", "Japanese", "German",
+            "Malay", "Vietnamese", "Korean", "French", "Turkish",
+            "Italian", "Thai", "Polish", "Ukrainian", "Romanian",
+            "Dutch", "Greek", "Czech", "Swedish", "Belarusian"
     );
-    private static final List<String> interests = Arrays.asList( // TODO : interests
-            "A", "B", "C"
+    private static final List<String> interests = Arrays.asList( // 70 (7 x 10)
+            "Astrology", "Basketball", "Bingo", "Bird Watching", "Board Games", "Bowling", "Brewing Beer", "Butterfly Collecting", "Cake Making", "Calligraphy",
+            "Camping", "Chess", "Child Care", "Cinema", "Crafts", "Cycling", "Dancing", "Darts", "Design", "Drawing",
+            "Eating Out", "Fashion", "Fishing", "Football", "Golf", "Gym or Weight Training", "Hiking", "Horse Riding", "Ice Skating", "Judo",
+            "Latin Dancing", "Listening to Music", "Magic", "Martial Arts", "Meditation", "Meeting Friends", "Model Cars", "Modelling", "Motorbikes", "Needlepoint",
+            "Nights Out", "Origami", "Painting", "Photography", "Ping Pong", "Playing Guitar", "Playing Piano", "Pool", "Reading", "Riding",
+            "Running", "Singing", "Skiing", "Snooker", "Snowboarding", "Stamp collecting", "Surfing", "Suring the Internet", "Swimming", "Tennis",
+            "Travelling", "Video Games", "Walking", "Watching Movies", "Watching TV", "Writing", "Yoga", "Jogging", "TV Series", "Cars"
     );
-    private static final List<String> words = Arrays.asList( // TODO : words
-            "lorem", "ipsum", "dolor", "sit", "amet"
+    private static final List<String> words = Arrays.asList( // 48 (6 x 8)
+            "integer", "vitae", "consequat", "lacus", "pulvinar", "nibh", "at", "semper",
+            "fusce", "mattis", "rutrum", "ligula", "venenatis", "blandit", "consectetur", "elit",
+            "odio", "luctus", "rhoncus", "risus", "pellentesque", "sit", "amet", "etiam",
+            "sodales", "lectus", "ac", "libero", "efficitur", "condimentum", "tincidunt", "mattis",
+            "mauris", "sed", "cursus", "augue", "pretium", "proin", "rutrum", "ultrices",
+            "sem", "nulla", "ligula", "lacus", "congue", "lorem", "ipsum", "dolor"
     );
     private static final List<String> requirementsAndAdvantages = Arrays.asList( // TODO : requirementsAndAdvantages
             "lorem", "ipsum", "dolor", "sit", "amet"

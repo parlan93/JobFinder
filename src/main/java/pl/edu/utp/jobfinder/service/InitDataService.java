@@ -17,7 +17,6 @@ import pl.edu.utp.jobfinder.repository.ApplyRepository;
 import pl.edu.utp.jobfinder.repository.CvRepository;
 import pl.edu.utp.jobfinder.repository.JobOfferRepository;
 import pl.edu.utp.jobfinder.repository.MessageRepository;
-import pl.edu.utp.jobfinder.repository.UserRoleRepository;
 
 /**
  *
@@ -38,8 +37,6 @@ public class InitDataService {
     private JobOfferRepository jobOfferRepository;
     @Autowired
     private MessageRepository messageRepository;
-    @Autowired
-    private UserRoleRepository userRoleRepository;
     
     // Generators
     @Autowired
@@ -71,7 +68,7 @@ public class InitDataService {
         List<Cv> cvs = cvGenerator.generateCVs(appUsers);
         List<JobOffer> jobOffers = jobOfferGenerator.generateJobOffers(5);
         
-        for (Cv cv : cvs) {
+        for (JobOffer cv : jobOffers) {
             System.out.println(cv.toString());
         }
 
@@ -87,7 +84,6 @@ public class InitDataService {
         cvRepository.deleteAll();
         jobOfferRepository.deleteAll();
         messageRepository.deleteAll();
-        userRoleRepository.deleteAll();
     }
 
 }

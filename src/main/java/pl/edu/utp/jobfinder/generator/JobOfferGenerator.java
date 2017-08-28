@@ -19,13 +19,22 @@ public class JobOfferGenerator extends AbstractGenerator {
         super();
     }
 
-    // TODO : generateJobOffers (work test)
+    /**
+     * Generate job offers - generate declared amount random job offers
+     * 
+     * @param amount
+     * @return 
+     */
     public List<JobOffer> generateJobOffers(int amount) {
+        // Create new list of job offers
         List<JobOffer> jobOffers = new ArrayList<>();
 
+        // Generates job offers
         for (int i = 0; i < amount; i++) {
+            // Create new job offer
             JobOffer jobOffer = new JobOffer();
 
+            // Set random values to job offer object
             jobOffer.setPosition(stringGenerator(DataValues.getPositions()));
             jobOffer.setCompany(stringGenerator(DataValues.getEmployers()));
             jobOffer.setCity(stringGenerator(DataValues.getCities()));
@@ -36,9 +45,11 @@ public class JobOfferGenerator extends AbstractGenerator {
             jobOffer.setWorkTime(workTimeGenerator());
             jobOffer.setIsAvailable(isAvailableGenerator());
 
+            // Add job offer to job offers list
             jobOffers.add(jobOffer);
         }
 
+        // Return job offers
         return jobOffers;
     }
 

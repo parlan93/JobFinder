@@ -130,7 +130,7 @@ public abstract class AbstractGenerator {
                 // Check that this word is first in sentence
                 if (j == 0) {
                     // Edit first letter of word to uppercase
-                    description.append(word.substring(0, 1)).append(word.substring(1));
+                    description.append(word.substring(0, 1).toUpperCase()).append(word.substring(1));
                 } else {
                     description.append(word);
                 }

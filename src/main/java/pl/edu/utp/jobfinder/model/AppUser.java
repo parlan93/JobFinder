@@ -3,11 +3,14 @@ package pl.edu.utp.jobfinder.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import pl.edu.utp.jobfinder.enumerator.UserRole;
 
 /**
  *
@@ -30,6 +33,8 @@ public class AppUser implements Serializable {
     private String password;
     @OneToOne(fetch = FetchType.EAGER, targetEntity = Cv.class)
     private Cv cv;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     // Constructors
     public AppUser() {
@@ -41,6 +46,7 @@ public class AppUser implements Serializable {
         this.email = email;
         this.password = password;
         this.cv = new Cv(firstname, lastname, email);
+        this.role = UserRole.USER;
     }
 
     // Getters and setters
@@ -88,10 +94,28 @@ public class AppUser implements Serializable {
         this.cv = cv;
     }
 
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
     // To String
     @Override
     public String toString() {
-        return "USER: " + firstname + " " + lastname + " " + email + " " + password;
+        // Create user application string
+        StringBuilder appUser = new StringBuilder();
+
+        // Append user information
+        appUser.append("Application User: ").append(firstname).append(" ").append(lastname).append("\n\n");
+        appUser.append("E-mail: ").append(email).append("\n");
+        appUser.append("Password: ").append(password).append("\n");
+        appUser.append("Role: ").append(role.getRoleEN()).append("\n");
+
+        // Return user application string
+        return appUser.toString();
     }
 
 }

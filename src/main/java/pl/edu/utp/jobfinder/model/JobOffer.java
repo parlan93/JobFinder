@@ -1,6 +1,8 @@
 package pl.edu.utp.jobfinder.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -152,11 +154,62 @@ public class JobOffer implements Serializable {
         this.isAvailable = isAvailable;
     }
 
-    // TODO : To string
+    // To String
     @Override
     public String toString() {
-        return "JobOffer{" + "position=" + position + ", company=" + company + ", city=" + city + ", date=" + date + ", description=" + description + ", requirements=" + requirements + ", advantages=" + advantages + ", business=" + business + ", workTime=" + workTime + ", isAvailable=" + isAvailable + '}';
+        // Create new string for job offer
+        StringBuilder jobOffer = new StringBuilder();
+
+        // Job offer header
+        jobOffer.append("Job Offer\n\n");
+        
+        // Job offer primary information
+        jobOffer.append("Position: ").append(position).append("\n");
+        jobOffer.append("Company: ").append(company).append("\n");
+        jobOffer.append("City: ").append(city).append("\n");
+        
+        // Job offer date 
+        this.date = new Date();
+        if (date != null) {
+            jobOffer.append("Date: ").append(date).append("\n");
+        }
+
+        // Job offer description
+        if (description != null && !description.isEmpty()) {
+            jobOffer.append("\nDescription: \n").append(description).append("\n");
+        }
+
+        // Requirements
+        if (requirements != null && !requirements.isEmpty()) {
+            jobOffer.append("\nRequirements: \n");
+            for (String requirement : requirements) {
+                jobOffer.append(requirement).append("\n");
+            }
+        }
+
+        // Additional advantages
+        if (advantages != null && !advantages.isEmpty()) {
+            jobOffer.append("\nAdvantagers: \n");
+            for (String advantage : advantages) {
+                jobOffer.append(advantage).append("\n");
+            }
+        }
+
+        // Job offer business
+        if (business != null && !business.isEmpty()) {
+            jobOffer.append("\nBusiness: ").append(business).append("\n");
+        }
+
+        // Job offer work time
+        if (workTime != null) {
+            jobOffer.append("WorkTime: ").append(workTime.getWorkTimeEN()).append("\n");
+        }
+        
+        // Job offer availability
+        jobOffer.append("Available: ").append(isAvailable).append("\n");
+
+        // Return job offer string
+        return jobOffer.toString();
     }
-    
-    
+
 }
