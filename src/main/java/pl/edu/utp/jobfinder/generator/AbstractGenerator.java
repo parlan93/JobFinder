@@ -35,6 +35,35 @@ public abstract class AbstractGenerator {
     }
 
     /**
+     * Sentence generator - generate random sentece based on values in
+     * dataSource
+     *
+     * @param dataSource
+     * @param minWords
+     * @param maxWords
+     * @return
+     */
+    protected String sentenceGenerator(List<String> dataSource, int minWords, int maxWords) {
+        StringBuilder sentence = new StringBuilder();
+
+        for (int i = 0; i < random.nextInt(maxWords - minWords) + minWords; i++) {
+            sentence.append(dataSource.get(random.nextInt(dataSource.size())));
+        }
+
+        return sentence.toString();
+    }
+
+    /**
+     * Sentence generator - generate sentence with 3 - 8 words
+     *
+     * @param dataSource
+     * @return
+     */
+    protected String sentenceGenerator(List<String> dataSource) {
+        return sentenceGenerator(dataSource, 3, 8);
+    }
+
+    /**
      * Full date generator - generate random date from year range (1950, 1995)
      *
      * @return
@@ -155,7 +184,7 @@ public abstract class AbstractGenerator {
      * @param amount
      * @return
      */
-    protected List<String> listOfStringsGenerator(List<String> dataSource, int amount) {
+    protected List<String> listOfWordsGenerator(List<String> dataSource, int amount) {
         // Create new list of strings
         List<String> list = new ArrayList<>();
 
@@ -165,6 +194,27 @@ public abstract class AbstractGenerator {
         }
 
         // Return list of strings
+        return list;
+    }
+
+    /**
+     * List of sentences generator - generate random sentences based on declared
+     * data source
+     *
+     * @param dataSource
+     * @param amount
+     * @return
+     */
+    protected List<String> listOfSentencesGenerator(List<String> dataSource, int amount) {
+        // Create new list of sentences
+        List<String> list = new ArrayList<>();
+
+        // Generate list
+        for (int i = 0; i < amount; i++) {
+            list.add(sentenceGenerator(dataSource));
+        }
+
+        // Return list of sentences
         return list;
     }
 

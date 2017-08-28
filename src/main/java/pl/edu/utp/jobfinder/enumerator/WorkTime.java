@@ -8,8 +8,8 @@ public enum WorkTime {
 
     // Options
     FULL_TIME("Pełen etat", "Full time"),
-    HALF_TIME("Pół etatu", "Half time");
-    // TODO: WorkTime enum - more options
+    HALF_TIME("Pół etatu", "Half time"),
+    NONTRADITIONAL("Niestandardowy wymiar pracy", "Nontraditional employment");
 
     // Fields
     private final String workTimePL;

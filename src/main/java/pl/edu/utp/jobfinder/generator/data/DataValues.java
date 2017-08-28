@@ -10,27 +10,27 @@ import java.util.List;
 public abstract class DataValues {
 
     // Data lists
-    private static final List<String> firstnames = Arrays.asList( // 50 (5 x 10)
+    private static final List<String> FIRSTNAMES = Arrays.asList( // 50 (5 x 10)
             "James", "John", "Robert", "Michael", "William", "David", "Richard", "Charles", "Joseph", "Thomas",
             "Christopher", "Daniel", "Paul", "Mark", "Donald", "George", "Kenneth", "Steven", "Edward", "Brian",
             "Ronald", "Anthony", "Kevin", "Jason", "Matthew", "Mary", "Patricia", "Linda", "Barbara", "Elizabeth",
             "Jennifer", "Maria", "Susan", "Margaret", "Dorothy", "Lisa", "Nancy", "Karen", "Betty", "Hellen",
             "Sandra", "Donna", "Carol", "Ruth", "Sharon", "Michelle", "Laura", "Sarah", "Kimberly", "Deborah"
     );
-    private static final List<String> lastnames = Arrays.asList( // 50 (5 x 10)
+    private static final List<String> LASTNAMES = Arrays.asList( // 50 (5 x 10)
             "Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson",
             "Martinez", "Anderson", "Taylor", "Thomas", "Hernandez", "Moore", "Martin", "Jackson", "Thompson", "White",
             "Lopez", "Lee", "Gonzalez", "Harris", "Clark", "Lewis", "Robinson", "Walker", "Perez", "Hull",
             "Young", "Allen", "Sanchez", "Wright", "King", "Scott", "Green", "Baker", "Adams", "Nelson",
             "Hill", "Ramirez", "Campbell", "Mitchell", "Roberts", "Carter", "Phillips", "Evans", "Turner", "Torres"
     );
-    private static final List<String> emailProviders = Arrays.asList( // 20 (4 x 5)
+    private static final List<String> EMAIL_PROVIDERS = Arrays.asList( // 20 (4 x 5)
             "aol.com", "atmail.com", "fastmail.com", "gmail.com", "gmx.net",
             "hushmail.com", "icloud.com", "lycos.com", "mail.com", "mail.ru",
             "mailfence.com", "outlook.com", "protonmail.com", "rackspace.com", "rediff.com",
             "runbox.com", "tutanota.com", "yahoo.com", "yandex.com", "zohocorp.com"
     );
-    private static final List<String> streetNames = Arrays.asList( // 50 (10 x 5)
+    private static final List<String> STREET_NAMES = Arrays.asList( // 50 (10 x 5)
             "High Street", "Station Road", "Main Street", "Park Road", "Church Road",
             "Church Street", "London Road", "Victoria Road", "Green Lane", "Manor Road",
             "Church Lane", "Park Avenue", "The Avenue", "The Crescent", "Queens Road",
@@ -42,7 +42,7 @@ public abstract class DataValues {
             "The Groove", "Richmond Road", "Grove Road", "South Street", "School Lane",
             "The Drive", "North Road", "Stanley Road", "Chester Road", "Mill Road"
     );
-    private static final List<String> cities = Arrays.asList( // 64 (8 x 8)
+    private static final List<String> CITIES = Arrays.asList( // 64 (8 x 8)
             "Aberdeen", "Armagh", "Bangor", "Bath", "Belfast", "Birmingham", "Bradford", "Brighton & Hove",
             "Bristol", "Cambridge", "Canterbury", "Cardiff", "Carlisle", "Chelmsford", "Chester", "Chichester",
             "Coventry", "Derby", "Derry", "Dundee", "Durham", "Edinburgh", "Ely", "Exeter",
@@ -52,7 +52,7 @@ public abstract class DataValues {
             "Preston", "Ripon", "Salford", "Salisbury", "Sheffield", "Southampton", "Stirling", "Sunderland",
             "Swansea", "Truro", "Wakefield", "Wells", "City of Westminster", "Wolverhampton", "Worcester", "York"
     );
-    private static final List<String> schools = Arrays.asList( // 50 (10 x 5)
+    private static final List<String> SCHOOLS = Arrays.asList( // 50 (10 x 5)
             "Balliol Lower School", "Christopher Reeves VA Lower School", "The Hills Academy", "Lakeview School", "Shackleton Primary School",
             "Mark Rutherford School", "Bedford Academy", "Beauchamp Middle School", "St Gregory's Roman Catholic Middle School", "Westfield School",
             "Fox Primary School", "St Mary's RC Primary School", "Thomas Jones Primary School", "Chelsea Academy", "Beddington Infants' School",
@@ -64,7 +64,7 @@ public abstract class DataValues {
             "Fircroft College", "Joseph Chamberlain Sixth Form College", "Bournville College", "Norfolk House School", "Green Heath School",
             "York College", "Askham Bryan College", "Huntington School", "York High School", "Manor Church of England School"
     );
-    private static final List<String> subjects = Arrays.asList( // 80 (10 x 8)
+    private static final List<String> SUBJECTS = Arrays.asList( // 80 (10 x 8)
             "Veterinary Medicine", "Farm Management", "Astronomy", "Biology", "Chemistry", "Earth Sciences", "Environmental Sciences", "Food Science and Technology",
             "Physical Geography", "Life Sciences", "Material Sciences", "Mathematics", "Physics", "Sports Science", "Architecture", "Built Environment",
             "Construction", "Planning", "Accounting", "Business Studies", "E-Commerce", "Finance", "Human Resources Management", "Management",
@@ -76,7 +76,7 @@ public abstract class DataValues {
             "Religious Studies", "Civil Law", "Criminal Law", "Public Law", "Economics", "Politics", "Sociology", "Photography",
             "Journalism", "Hotel Management", "Travel and Tourism", "Media", "Linguistics", "International relations", "Legal Advice", "Ophthalmology"
     );
-    private static final List<String> employers = Arrays.asList( // 60 (10 x 6)
+    private static final List<String> EMPLOYERS = Arrays.asList( // 60 (10 x 6)
             "Costco Wholesale", "Google", "REI", "Memorial Hermann Health System", "United Services Automobile Association", "MD Anderson Cancer Center",
             "Penn Medicine", "Mayo Clinic", "City of Austin", "Wegmans Food Markets", "The Container Store", "JetBlue Airways",
             "Facebook", "University of Iowa Hospitals & Clinics", "University of Miami", "Trader Joe's", "QuikTrip", "Winthrop University Hospital",
@@ -88,7 +88,7 @@ public abstract class DataValues {
             "Partners HealthCare System", "Microsoft", "Houston Methodist", "UCSF Medical Center", "Cargill", "In-N-Out Burger",
             "Montgomery County Public Schools", "Marathon Petroleum", "Yale New Haven Health", "Sikorsky", "Johns Hopkins University", "LinkedIn"
     );
-    private static final List<String> positions = Arrays.asList( // 80 (8 x 10)
+    private static final List<String> POSITIONS = Arrays.asList( // 80 (8 x 10)
             "Accountant", "Air Traffic Controller", "Animal Scientist", "Archeologist", "Architect", "Artist", "Astronomer", "Baker", "Barber", "Bartender",
             "Biochemist", "Biologist", "Bus Driver", "Butcher", "Camera Operator", "CEO", "CFO", "Chef", "Chemist", "Child Care",
             "Cleaner of Vehicles", "Copy Writer", "Courier", "Database Administrator", "Dentist", "Designer", "Director Of Marketing", "Economist", "Electrician", "Electronics Engineer",
@@ -98,7 +98,7 @@ public abstract class DataValues {
             "PR Manager", "Private Detective and Investigator", "Production Worker", "Project Manager", "Psychiatrist", "Psychologist", "Recruiter", "Safety Engineer", "School Bus Driver", "Secretary",
             "Sheriff", "Singer", "Sociologist", "Stripper", "Teacher", "Telemarketer", "Tour Guide", "Veterinarian", "Waitress", "Webmaster"
     );
-    private static final List<String> skills = Arrays.asList( // 70 (10 x 7)
+    private static final List<String> SKILLS = Arrays.asList( // 70 (10 x 7)
             "Accounting", "Active Listening", "Administrative", "Analytical", "Behavioral", "Business Intelligence", "Business",
             "Business Storytelling", "Collaboration", "Communication", "Computer", "Conceptual", "Conflict Management", "Conflict Resolution",
             "Consulting", "Content Strategy", "Creative Thinking", "Critical Thinking", "Customer Service", "Decision Making", "Delegation",
@@ -110,14 +110,14 @@ public abstract class DataValues {
             "Sales", "Social", "Social Media", "Soft Skills", "Strategic Planning", "Strengths", "Team Building",
             "Teamwork", "Tech Skills", "Technical", "Time Management", "Transferable", "Verbal Communication", "Writing"
     );
-    private static final List<String> languages = Arrays.asList( // 25 (5 x 5)
+    private static final List<String> LANGUAGES = Arrays.asList( // 25 (5 x 5)
             "Mandarin", "Spanish", "English", "Hindi", "Arabic",
             "Portuguese", "Bengali", "Russian", "Japanese", "German",
             "Malay", "Vietnamese", "Korean", "French", "Turkish",
             "Italian", "Thai", "Polish", "Ukrainian", "Romanian",
             "Dutch", "Greek", "Czech", "Swedish", "Belarusian"
     );
-    private static final List<String> interests = Arrays.asList( // 70 (7 x 10)
+    private static final List<String> INTERESTS = Arrays.asList( // 70 (7 x 10)
             "Astrology", "Basketball", "Bingo", "Bird Watching", "Board Games", "Bowling", "Brewing Beer", "Butterfly Collecting", "Cake Making", "Calligraphy",
             "Camping", "Chess", "Child Care", "Cinema", "Crafts", "Cycling", "Dancing", "Darts", "Design", "Drawing",
             "Eating Out", "Fashion", "Fishing", "Football", "Golf", "Gym or Weight Training", "Hiking", "Horse Riding", "Ice Skating", "Judo",
@@ -126,7 +126,7 @@ public abstract class DataValues {
             "Running", "Singing", "Skiing", "Snooker", "Snowboarding", "Stamp collecting", "Surfing", "Suring the Internet", "Swimming", "Tennis",
             "Travelling", "Video Games", "Walking", "Watching Movies", "Watching TV", "Writing", "Yoga", "Jogging", "TV Series", "Cars"
     );
-    private static final List<String> words = Arrays.asList( // 48 (6 x 8)
+    private static final List<String> WORDS = Arrays.asList( // 48 (6 x 8)
             "integer", "vitae", "consequat", "lacus", "pulvinar", "nibh", "at", "semper",
             "fusce", "mattis", "rutrum", "ligula", "venenatis", "blandit", "consectetur", "elit",
             "odio", "luctus", "rhoncus", "risus", "pellentesque", "sit", "amet", "etiam",
@@ -134,72 +134,69 @@ public abstract class DataValues {
             "mauris", "sed", "cursus", "augue", "pretium", "proin", "rutrum", "ultrices",
             "sem", "nulla", "ligula", "lacus", "congue", "lorem", "ipsum", "dolor"
     );
-    private static final List<String> requirementsAndAdvantages = Arrays.asList( // TODO : requirementsAndAdvantages
-            "lorem", "ipsum", "dolor", "sit", "amet"
-    );
-    private static final List<String> businessCategories = Arrays.asList( // TODO : businessCategories
-            "lorem", "ipsum", "dolor", "sit", "amet"
+    private static final List<String> BUSINESS_CATEGORIES = Arrays.asList( // 25 (5 x 5)
+            "Arts", "Automotive", "Beauty & Spas", "Education", "Event Planning & Services", 
+            "Financial Services", "Food", "Health & Medical", "Home Services", "Hotels & Travel", 
+            "Local Services", "Mass Media", "Nightlife", "Pets", "Professional Services", 
+            "Public Services & Government", "Real Estate", "Religious Organizations", "Restaurants", "Shopping",
+            "Computers & Electronics", "Entertainment", "Manufacturing", "Distribution", "Transportation"
     );
 
     // Getters
     public static List<String> getFirstnames() {
-        return firstnames;
+        return FIRSTNAMES;
     }
 
     public static List<String> getLastnames() {
-        return lastnames;
+        return LASTNAMES;
     }
 
     public static List<String> getEmailProviders() {
-        return emailProviders;
+        return EMAIL_PROVIDERS;
     }
 
     public static List<String> getStreetNames() {
-        return streetNames;
+        return STREET_NAMES;
     }
 
     public static List<String> getCities() {
-        return cities;
+        return CITIES;
     }
 
     public static List<String> getSchools() {
-        return schools;
+        return SCHOOLS;
     }
 
     public static List<String> getSubjects() {
-        return subjects;
+        return SUBJECTS;
     }
 
     public static List<String> getEmployers() {
-        return employers;
+        return EMPLOYERS;
     }
 
     public static List<String> getPositions() {
-        return positions;
+        return POSITIONS;
     }
 
     public static List<String> getSkills() {
-        return skills;
+        return SKILLS;
     }
 
     public static List<String> getLanguages() {
-        return languages;
+        return LANGUAGES;
     }
 
     public static List<String> getInterests() {
-        return interests;
+        return INTERESTS;
     }
 
     public static List<String> getWords() {
-        return words;
-    }
-
-    public static List<String> getRequirementsAndAdvantages() {
-        return requirementsAndAdvantages;
+        return WORDS;
     }
 
     public static List<String> getBusinessCategories() {
-        return businessCategories;
+        return BUSINESS_CATEGORIES;
     }
 
 }

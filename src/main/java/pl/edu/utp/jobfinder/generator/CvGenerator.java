@@ -96,7 +96,7 @@ public class CvGenerator extends AbstractGenerator {
             cv.setLanguagesLevels(cvLanguagesLevels);
 
             // Generate and set information about interests and self description
-            cv.setInterests(listOfStringsGenerator(DataValues.getInterests(), random.nextInt(12)));
+            cv.setInterests(listOfWordsGenerator(DataValues.getInterests(), random.nextInt(12)));
             cv.setAbout(descriptionsGenerator());
 
             // Add generated information to CV list
