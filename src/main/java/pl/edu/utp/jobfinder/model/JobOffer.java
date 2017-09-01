@@ -36,7 +36,7 @@ public class JobOffer implements Serializable {
     private String city;
     @Temporal(TemporalType.DATE)
     private Date date;
-    @Column(length = 2048)
+    @Column(length = 1024)
     private String description;
     @Column(nullable = false)
     @ElementCollection(targetClass = String.class)

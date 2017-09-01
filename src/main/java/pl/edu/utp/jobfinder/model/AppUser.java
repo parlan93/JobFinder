@@ -33,12 +33,10 @@ public class AppUser implements Serializable {
     private String email;
     @Column(nullable = false)
     private String password;
-//    @OneToOne(fetch = FetchType.EAGER, targetEntity = Cv.class, cascade = {CascadeType.MERGE})
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Cv.class, fetch = FetchType.EAGER)
     @JoinColumn
-    // TODO : Cv Annotation
     private Cv cv;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private UserRole role;
 
     // Constructors
@@ -51,6 +49,7 @@ public class AppUser implements Serializable {
         this.email = email;
         this.password = password;
         this.cv = new Cv(firstname, lastname, email);
+        
         this.role = UserRole.USER;
     }
 

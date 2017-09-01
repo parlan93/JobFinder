@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import pl.edu.utp.jobfinder.enumerator.ApplyStatus;
 
@@ -23,9 +24,11 @@ public class Apply implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = JobOffer.class, cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = JobOffer.class, fetch = FetchType.EAGER)
+    @JoinColumn
     private JobOffer jobOffer;
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Cv.class, cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = Cv.class, fetch = FetchType.EAGER)
+    @JoinColumn
     private Cv cv;
     @Enumerated(EnumType.STRING)
     private ApplyStatus applyStatus;

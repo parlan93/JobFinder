@@ -38,9 +38,9 @@ public class Cv implements Serializable {
     private String address;
 
     // Fields - Education
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private LevelOfEducation levelOfEducation;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private EducationTitle educationTitle;
     @ElementCollection(targetClass = String.class)
     private List<String> schools;
@@ -72,6 +72,7 @@ public class Cv implements Serializable {
     // Fields - Interests and about
     @ElementCollection(targetClass = String.class)
     private List<String> interests;
+    @Column(length = 1024)
     private String about;
 
     // Constructors
