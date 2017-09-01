@@ -250,7 +250,11 @@ public class Cv implements Serializable {
         this.about = about;
     }
 
-    // To String
+    /**
+     * To string - returns pretty string of object
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
         // Create new CV string

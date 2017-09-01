@@ -106,7 +106,11 @@ public class AppUser implements Serializable {
         this.role = role;
     }
 
-    // To String
+    /**
+     * To string - returns pretty string of object
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
         // Create user application string

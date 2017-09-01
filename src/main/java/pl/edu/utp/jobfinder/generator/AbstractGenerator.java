@@ -1,6 +1,7 @@
 package pl.edu.utp.jobfinder.generator;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
@@ -29,7 +30,7 @@ public abstract class AbstractGenerator {
     protected JobOfferRepository jobOfferRepository;
     @Autowired
     protected MessageRepository messageRepository;
-    
+
     // Object needed to generate random values
     protected final Random random;
 
@@ -67,10 +68,15 @@ public abstract class AbstractGenerator {
         StringBuilder sentence = new StringBuilder();
 
         for (int i = 0; i < random.nextInt(maxWords - minWords) + minWords; i++) {
-            sentence.append(dataSource.get(random.nextInt(dataSource.size())));
+            String word = dataSource.get(random.nextInt(dataSource.size()));
+            if (i == 0) {
+                sentence.append(word.substring(0, 1).toUpperCase()).append(word.substring(1));
+            } else {
+                sentence.append(word).append(" ");
+            }
         }
 
-        return sentence.toString();
+        return sentence.toString().trim();
     }
 
     /**
@@ -153,6 +159,15 @@ public abstract class AbstractGenerator {
      */
     protected String datesFromToGenerator() {
         return new StringBuilder(dateGenerator() + ";" + dateGenerator()).toString();
+    }
+
+    /**
+     * Date object generator - return random date object
+     *
+     * @return
+     */
+    protected Date dateObjectGenerator() {
+        return new Date(new Date().getTime() - random.nextInt(Integer.MAX_VALUE));
     }
 
     /**

@@ -1,8 +1,6 @@
 package pl.edu.utp.jobfinder.model;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -107,6 +105,10 @@ public class JobOffer implements Serializable {
         return date;
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -155,22 +157,26 @@ public class JobOffer implements Serializable {
         this.isAvailable = isAvailable;
     }
 
-    // To String
+    /**
+     * To string - returns pretty string of object
+     *
+     * @return
+     */
     @Override
     public String toString() {
         // Create new string for job offer
         StringBuilder jobOffer = new StringBuilder();
 
         // Job offer header
-        jobOffer.append("Job Offer\n\n");
-        
+        jobOffer.append("JOB OFFER\n\n");
+
         // Job offer primary information
         jobOffer.append("Position: ").append(position).append("\n");
         jobOffer.append("Company: ").append(company).append("\n");
         jobOffer.append("City: ").append(city).append("\n");
-        
+
         // Job offer date 
-        this.date = new Date();
+        // TODO: Dates in generator
         if (date != null) {
             jobOffer.append("Date: ").append(date).append("\n");
         }
@@ -205,7 +211,7 @@ public class JobOffer implements Serializable {
         if (workTime != null) {
             jobOffer.append("WorkTime: ").append(workTime.getWorkTimeEN()).append("\n");
         }
-        
+
         // Job offer availability
         jobOffer.append("Available: ").append(isAvailable).append("\n");
 

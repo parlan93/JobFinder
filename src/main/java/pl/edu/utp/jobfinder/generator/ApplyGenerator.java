@@ -18,7 +18,8 @@ public class ApplyGenerator extends AbstractGenerator{
         super();
     }
     
-    // TODO : Check
+    // TODO : Check date, because was NULL instead of
+    // TODO : Add comments
     public List<Apply> generateApplies(int amount) {
         List<Apply> applies = new ArrayList<>();
         

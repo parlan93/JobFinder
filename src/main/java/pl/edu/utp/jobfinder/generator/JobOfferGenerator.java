@@ -38,6 +38,7 @@ public class JobOfferGenerator extends AbstractGenerator {
             jobOffer.setPosition(stringGenerator(DataValues.getPositions()));
             jobOffer.setCompany(stringGenerator(DataValues.getEmployers()));
             jobOffer.setCity(stringGenerator(DataValues.getCities()));
+            jobOffer.setDate(dateObjectGenerator());
             jobOffer.setDescription(descriptionsGenerator());
             jobOffer.setRequirements(listOfSentencesGenerator(DataValues.getWords(), random.nextInt(12)));
             jobOffer.setAdvantages(listOfSentencesGenerator(DataValues.getWords(), random.nextInt(12)));

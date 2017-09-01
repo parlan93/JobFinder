@@ -72,25 +72,36 @@ public class Apply implements Serializable {
         this.applyStatus = applyStatus;
     }
 
+    /**
+     * To string - returns pretty string of object
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
+        // Create new string for apply
         StringBuilder apply = new StringBuilder();
 
+        // Apply header
         apply.append("Apply\n\n");
 
+        // Apply JobOffer info
         apply.append("Job Offer: ").append(jobOffer.getPosition()).append("\n");
         apply.append("Company: ").append(jobOffer.getCompany()).append("\n");
         apply.append("City: ").append(jobOffer.getCity()).append("\n");
         apply.append("Work Time: ").append(jobOffer.getWorkTime().getWorkTimeEN()).append("\n");
         apply.append("Added: ").append(jobOffer.getDate()).append("\n\n");
 
+        // Apply Applicant info
         apply.append("Applicant: ").append(cv.getFirstname()).append(" ").append(cv.getLastname()).append("\n");
         apply.append("Birth: ").append(cv.getBirthDate()).append("\n");
         apply.append("Address: ").append(cv.getAddress()).append("\n");
         apply.append("Phone: ").append(cv.getPhone()).append("\n\n");
 
+        // Apply status
         apply.append("Status: ").append(applyStatus.getApplyStatusEN()).append("\n");
 
+        // Return apply
         return apply.toString();
     }
 
