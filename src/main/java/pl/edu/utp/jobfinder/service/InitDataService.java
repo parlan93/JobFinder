@@ -33,7 +33,7 @@ import pl.edu.utp.jobfinder.repository.MessageRepository;
 public class InitDataService {
     
     // Random object to generate values
-    private Random random = new Random();
+    private final Random random = new Random();
     
     // Logger
     private final Logger LOGGER = LoggerFactory.getLogger(InitDataService.class);
