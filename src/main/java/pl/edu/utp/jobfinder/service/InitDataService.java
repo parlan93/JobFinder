@@ -68,22 +68,19 @@ public class InitDataService {
 
         // Generate new data
         
-        // TODO : Save appUsers
         List<AppUser> appUsers = appUserGenerator.generateAppUsers(5);
-
-        // TODO : Save cvs
+        appUserRepository.save(appUsers);
+        
         List<Cv> cvs = cvGenerator.generateCVs(appUserRepository.findAll());
+        cvRepository.save(cvs);
         
-        // TODO : Save jobOffers
         List<JobOffer> jobOffers = jobOfferGenerator.generateJobOffers(5);
+        jobOfferRepository.save(jobOffers);
         
-        // TODO : Save applies
-        //List<Apply> applies = applyGenerator.generateApplies(3);
+        List<Apply> applies = applyGenerator.generateApplies(3);
+        applyRepository.save(applies);
         
-//        for (Apply cv : applies) {
-//            System.out.println(cv.toString());
-//        }
-
+        
     }
 
     /**
