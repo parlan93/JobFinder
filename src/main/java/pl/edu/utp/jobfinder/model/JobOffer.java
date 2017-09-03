@@ -149,7 +149,7 @@ public class JobOffer implements Serializable {
         this.workTime = workTime;
     }
 
-    public boolean isIsAvailable() {
+    public boolean getIsAvailable() {
         return isAvailable;
     }
 

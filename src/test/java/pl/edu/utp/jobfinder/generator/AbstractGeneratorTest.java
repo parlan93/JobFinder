@@ -1,8 +1,10 @@
 package pl.edu.utp.jobfinder.generator;
 
-import org.junit.Test;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  *
@@ -10,73 +12,180 @@ import org.junit.Ignore;
  */
 public class AbstractGeneratorTest {
 
+    // Fields
+    private final List<String> testValues = Arrays.asList("lorem", "ipsum", "dolor", "sit", "amet");
+    private final AppUserGenerator appUserGenerator = new AppUserGenerator();
+
+    // Constructor
     public AbstractGeneratorTest() {
     }
 
     /**
-     * TODO: stringGeneratorTest
+     * stringGeneratorTest
      */
     @Test
-    @Ignore
     public void stringGeneratorTest() {
+        // Given
+        boolean expected = true;
 
+        // When
+        boolean result = false;
+        String string = appUserGenerator.stringGenerator(testValues);
+        for (String testValue : testValues) {
+            if (testValue.equals(string)) {
+                result = true;
+            }
+        }
+
+        // Then
+        assertEquals(expected, result);
     }
 
     /**
-     * TODO: sentenceGeneratorTest
+     * sentenceGeneratorTest
      */
     @Test
-    @Ignore
     public void sentenceGeneratorTest() {
+        // Given
+        int expected = 3;
 
+        // When
+        int result = appUserGenerator.sentenceGenerator(testValues, 3, 3).split(" ").length;
+
+        // Then
+        assertEquals(expected, result);
     }
 
     /**
-     * TODO: fullDateGenerator
+     * fullDateGeneratorTest1
      */
     @Test
-    @Ignore
-    public void fullDateGenerator() {
+    public void fullDateGeneratorTest1() {
+        // Given
+        int expected = 3;
+
+        // When
+        int result = appUserGenerator.fullDateGenerator().split("/").length;
+
+        // Then
+        assertEquals(expected, result);
     }
 
     /**
-     * TODO: dateGenerator
+     * fullDateGeneratorTest2
      */
     @Test
-    @Ignore
-    public void dateGenerator() {
+    public void fullDateGeneratorTest2() {
+        // Given
+        boolean expected = true;
+
+        // When
+        boolean result = true;
+        String[] generatedDateParts = appUserGenerator.fullDateGenerator().split("/");
+        for (String generatedDatePart : generatedDateParts) {
+            for (Character character : generatedDatePart.toCharArray()) {
+                result = Character.isDigit(character);
+            }
+        }
+
+        // Then
+        assertEquals(expected, result);
     }
 
     /**
-     * TODO: datesFromToGenerator
+     * dateGeneratorTest1
      */
     @Test
-    @Ignore
-    public void datesFromToGenerator() {
+    public void dateGeneratorTest1() {
+        // Given
+        int expected = 2;
+
+        // When
+        int result = appUserGenerator.dateGenerator().split("/").length;
+
+        // Then
+        assertEquals(expected, result);
     }
 
     /**
-     * TODO: dateObjectGenerator
+     * dateGeneratorTest2
      */
     @Test
-    @Ignore
-    public void dateObjectGenerator() {
+    public void dateGeneratorTest2() {
+        // Given
+        boolean expected = true;
+
+        // When
+        boolean result = true;
+        String[] generatedDateParts = appUserGenerator.dateGenerator().split("/");
+        for (String generatedDatePart : generatedDateParts) {
+            for (Character character : generatedDatePart.toCharArray()) {
+                result = Character.isDigit(character);
+            }
+        }
+
+        // Then
+        assertEquals(expected, result);
     }
 
     /**
-     * TODO: listOfWordsGenerator
+     * datesFromToGeneratorTest
      */
     @Test
-    @Ignore
-    public void listOfWordsGenerator() {
+    public void datesFromToGeneratorTest() {
+        // Given
+        int expected = 2;
+
+        // When
+        int result = appUserGenerator.datesFromToGenerator().split(";").length;
+
+        // Then
+        assertEquals(expected, result);
     }
 
     /**
-     * TODO: listOfSentencesGenerator
+     * dateObjectGeneratorTest
      */
     @Test
-    @Ignore
-    public void listOfSentencesGenerator() {
+    public void dateObjectGeneratorTest() {
+        // Given
+        boolean expected = true;
+
+        // When
+        boolean result = appUserGenerator.dateObjectGenerator() instanceof Date;
+
+        // Then
+        assertEquals(expected, result);
+    }
+
+    /**
+     * listOfWordsGeneratorTest
+     */
+    @Test
+    public void listOfWordsGeneratorTest() {
+        // Given
+        int expected = 5;
+
+        // When
+        int result = appUserGenerator.listOfWordsGenerator(testValues, 5).size();
+
+        // Then
+        assertEquals(expected, result);
+    }
+
+    /**
+     * listOfSentencesGeneratorTest
+     */
+    @Test
+    public void listOfSentencesGeneratorTest() {
+        // Given
+        int expected = 5;
+
+        // When
+        int result = appUserGenerator.listOfWordsGenerator(testValues, 5).size();
+
+        // Then
+        assertEquals(expected, result);
     }
 
 }

@@ -67,10 +67,10 @@ public abstract class AbstractGenerator {
     protected String sentenceGenerator(List<String> dataSource, int minWords, int maxWords) {
         StringBuilder sentence = new StringBuilder();
 
-        for (int i = 0; i < random.nextInt(maxWords - minWords) + minWords; i++) {
+        for (int i = 0; i < (random.nextInt(maxWords - minWords + 1) + minWords); i++) {
             String word = dataSource.get(random.nextInt(dataSource.size()));
             if (i == 0) {
-                sentence.append(word.substring(0, 1).toUpperCase()).append(word.substring(1));
+                sentence.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
             } else {
                 sentence.append(word).append(" ");
             }
@@ -108,8 +108,8 @@ public abstract class AbstractGenerator {
     protected String fullDateGenerator(int yearFrom, int yearTo) {
         // Create random gregorian calendar
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        gregorianCalendar.set(gregorianCalendar.YEAR, random.nextInt(yearTo - yearFrom) + yearFrom);
-        gregorianCalendar.set(gregorianCalendar.DAY_OF_YEAR, random.nextInt(gregorianCalendar.getActualMaximum(gregorianCalendar.DAY_OF_YEAR)));
+        gregorianCalendar.set(gregorianCalendar.YEAR, random.nextInt(yearTo - yearFrom + 1) + yearFrom);
+        gregorianCalendar.set(gregorianCalendar.DAY_OF_YEAR, random.nextInt(gregorianCalendar.getActualMaximum(gregorianCalendar.DAY_OF_YEAR)) + 1);
 
         // Create and return string from gregorian calendar
         StringBuilder date = new StringBuilder();

@@ -2,7 +2,7 @@ package pl.edu.utp.jobfinder.generator;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
+import pl.edu.utp.jobfinder.enumerator.WorkTime;
 
 /**
  *
@@ -10,31 +10,55 @@ import org.junit.Ignore;
  */
 public class JobOfferGeneratorTest {
 
+    // Fields
+    private final JobOfferGenerator jobOfferGenerator = new JobOfferGenerator();
+    
+    // Constructor
     public JobOfferGeneratorTest() {
     }
 
     /**
-     * TODO: generateJobOffersTest
+     * generateJobOffersTest
      */
     @Test
-    @Ignore
     public void generateJobOffersTest() {
+        // Given
+        int expected = 5;
+        
+        // When
+        int result = jobOfferGenerator.generateJobOffers(5).size();
+        
+        // Then
+        assertEquals(expected, result);
     }
 
     /**
-     * TODO: workTimeGeneratorTest
+     * workTimeGeneratorTest
      */
     @Test
-    @Ignore
     public void workTimeGeneratorTest() {
+        // Given
+        boolean expected = true;
+        
+        // When
+        boolean result = jobOfferGenerator.generateJobOffers(1).get(0).getWorkTime() instanceof WorkTime;
+        
+        // Then
+        assertEquals(expected, result);
     }
 
     /**
-     * TODO: isAvailableGeneratorTest
+     * isAvailableGeneratorTest
      */
     @Test
-    @Ignore
     public void isAvailableGeneratorTest() {
+        // Given
+        
+        // When
+        boolean result = jobOfferGenerator.generateJobOffers(1).get(0).getIsAvailable();
+        
+        // Then
+        assertNotNull(result);
     }
 
 }
