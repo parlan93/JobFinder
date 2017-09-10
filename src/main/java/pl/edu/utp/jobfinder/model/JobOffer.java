@@ -3,6 +3,7 @@ package pl.edu.utp.jobfinder.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -219,4 +220,71 @@ public class JobOffer implements Serializable {
         return jobOffer.toString();
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        hash = 61 * hash + Objects.hashCode(this.position);
+        hash = 61 * hash + Objects.hashCode(this.company);
+        hash = 61 * hash + Objects.hashCode(this.city);
+        hash = 61 * hash + Objects.hashCode(this.date);
+        hash = 61 * hash + Objects.hashCode(this.description);
+        hash = 61 * hash + Objects.hashCode(this.requirements);
+        hash = 61 * hash + Objects.hashCode(this.advantages);
+        hash = 61 * hash + Objects.hashCode(this.business);
+        hash = 61 * hash + Objects.hashCode(this.workTime);
+        hash = 61 * hash + (this.isAvailable ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final JobOffer other = (JobOffer) obj;
+        if (this.isAvailable != other.isAvailable) {
+            return false;
+        }
+        if (!Objects.equals(this.position, other.position)) {
+            return false;
+        }
+        if (!Objects.equals(this.company, other.company)) {
+            return false;
+        }
+        if (!Objects.equals(this.city, other.city)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.business, other.business)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.date, other.date)) {
+            return false;
+        }
+        if (!Objects.equals(this.requirements, other.requirements)) {
+            return false;
+        }
+        if (!Objects.equals(this.advantages, other.advantages)) {
+            return false;
+        }
+        if (this.workTime != other.workTime) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
 }
