@@ -9,6 +9,7 @@ import pl.edu.utp.jobfinder.model.AppUser;
  * @author Bartłomiej Skibiński
  */
 @Repository
-public interface AppUserRepository extends JpaRepository<AppUser, Long>{
-    
+public interface AppUserRepository extends JpaRepository<AppUser, Long> {
+
+    AppUser findByEmailAndPassword(String email, String password);
 }

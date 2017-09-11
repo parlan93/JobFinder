@@ -38,6 +38,10 @@ public class AppUserGenerator extends AbstractGenerator {
             // Add new user with random values
             appUsers.add(new AppUser(firstname, lastname, emailGenerator(firstname, lastname), passwordGenerator(firstname, lastname)));
         }
+        
+        for (AppUser appUser : appUsers) {
+            System.out.println(appUser.getEmail() + " " + appUser.getPassword());
+        }
 
         // Return generated users
         return appUsers;
