@@ -11,5 +11,7 @@ import pl.edu.utp.jobfinder.model.AppUser;
 @Repository
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
+    AppUser findByEmail(String email);
+
     AppUser findByEmailAndPassword(String email, String password);
 }

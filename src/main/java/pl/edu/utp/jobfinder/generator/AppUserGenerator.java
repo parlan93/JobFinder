@@ -1,10 +1,15 @@
 package pl.edu.utp.jobfinder.generator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.utp.jobfinder.generator.data.DataValues;
 import pl.edu.utp.jobfinder.model.AppUser;
+import pl.edu.utp.jobfinder.model.UserProfile;
+import pl.edu.utp.jobfinder.repository.UserProfileRepository;
 
 /**
  *
@@ -12,6 +17,10 @@ import pl.edu.utp.jobfinder.model.AppUser;
  */
 @Service
 public class AppUserGenerator extends AbstractGenerator {
+
+    // Repositories
+    @Autowired
+    private UserProfileRepository userProfileRepository;
 
     // Constructors
     public AppUserGenerator() {
@@ -36,11 +45,15 @@ public class AppUserGenerator extends AbstractGenerator {
             String lastname = stringGenerator(DataValues.getLastnames());
 
             // Add new user with random values
-            appUsers.add(new AppUser(firstname, lastname, emailGenerator(firstname, lastname), passwordGenerator(firstname, lastname)));
+            AppUser appUser = new AppUser(firstname, lastname, emailGenerator(firstname, lastname), passwordGenerator(firstname, lastname));
+            
+            UserProfile profile = userProfileRepository.findByType("USER");
+            appUser.setUserProfile(profile);
+            appUsers.add(appUser);
         }
         
         for (AppUser appUser : appUsers) {
-            System.out.println(appUser.getEmail() + " " + appUser.getPassword());
+            System.out.println(appUser.getEmail() + " " + appUser.getPassword() + " " + appUser.getUserProfile().getType());
         }
 
         // Return generated users
@@ -105,5 +118,5 @@ public class AppUserGenerator extends AbstractGenerator {
         // Return generated password
         return password.toString();
     }
-
+    
 }

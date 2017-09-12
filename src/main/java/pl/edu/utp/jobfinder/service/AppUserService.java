@@ -18,6 +18,10 @@ public class AppUserService {
     private AppUserRepository appUserRepository;
 
     // Delegate methods
+    public AppUser findByEmail(String email) {
+        return appUserRepository.findByEmail(email);
+    }
+
     public AppUser findByEmailAndPassword(String email, String password) {
         return appUserRepository.findByEmailAndPassword(email, password);
     }

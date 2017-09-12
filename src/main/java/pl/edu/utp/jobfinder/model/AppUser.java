@@ -1,18 +1,17 @@
 package pl.edu.utp.jobfinder.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import pl.edu.utp.jobfinder.enumerator.UserRole;
 
 /**
  *
@@ -36,8 +35,13 @@ public class AppUser implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Cv.class, fetch = FetchType.EAGER)
     @JoinColumn
     private Cv cv;
-    @Enumerated(EnumType.ORDINAL)
-    private UserRole role;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(joinColumns = {
+//        @JoinColumn(name = "appuser_id")}, inverseJoinColumns = {
+//        @JoinColumn(name = "userprofile_id")})
+    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = UserProfile.class, fetch = FetchType.EAGER)
+    @JoinColumn
+    private UserProfile userProfile;
 
     // Constructors
     public AppUser() {
@@ -49,9 +53,7 @@ public class AppUser implements Serializable {
         this.email = email;
         this.password = password;
         this.cv = new Cv(firstname, lastname, email);
-        
-        this.role = UserRole.USER;
-    }
+    } 
 
     // Getters and setters
     public Long getId() {
@@ -98,18 +100,48 @@ public class AppUser implements Serializable {
         this.cv = cv;
     }
 
-    public UserRole getRole() {
-        return role;
+    public UserProfile getUserProfile() {
+        return userProfile;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
+
+    // Equals and hashCode
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AppUser other = (AppUser) obj;
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
     /**
      * To string - returns pretty string of object
-     * 
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
@@ -120,7 +152,7 @@ public class AppUser implements Serializable {
         appUser.append("Application User: ").append(firstname).append(" ").append(lastname).append("\n\n");
         appUser.append("E-mail: ").append(email).append("\n");
         appUser.append("Password: ").append(password).append("\n");
-        appUser.append("Role: ").append(role.getRoleEN()).append("\n");
+//        appUser.append("Role: ").append(role.getRoleEN()).append("\n"); TODO : edit to String
 
         // Return user application string
         return appUser.toString();

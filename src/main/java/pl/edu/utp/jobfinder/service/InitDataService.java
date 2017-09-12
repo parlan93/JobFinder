@@ -1,7 +1,9 @@
 package pl.edu.utp.jobfinder.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +20,13 @@ import pl.edu.utp.jobfinder.model.Apply;
 import pl.edu.utp.jobfinder.model.Cv;
 import pl.edu.utp.jobfinder.model.JobOffer;
 import pl.edu.utp.jobfinder.model.Message;
+import pl.edu.utp.jobfinder.model.UserProfile;
 import pl.edu.utp.jobfinder.repository.AppUserRepository;
 import pl.edu.utp.jobfinder.repository.ApplyRepository;
 import pl.edu.utp.jobfinder.repository.CvRepository;
 import pl.edu.utp.jobfinder.repository.JobOfferRepository;
 import pl.edu.utp.jobfinder.repository.MessageRepository;
+import pl.edu.utp.jobfinder.repository.UserProfileRepository;
 
 /**
  *
@@ -40,9 +44,9 @@ public class InitDataService {
 
     // Constants
     private final int USERS_TO_GENERATE = 50 + random.nextInt(50);
-    private final int APPLIES_TO_GENERATE = 30 + random.nextInt(35);
-    private final int JOB_OFFERS_TO_GENERATE = 10 + random.nextInt(20);
-    private final int MESSAGES_TO_GENERATE = 100 + random.nextInt(100);
+    private final int APPLIES_TO_GENERATE = 40 + random.nextInt(40);
+    private final int JOB_OFFERS_TO_GENERATE = 20 + random.nextInt(20);
+    private final int MESSAGES_TO_GENERATE = 150 + random.nextInt(150);
     
     // Repositories
     @Autowired
@@ -55,6 +59,8 @@ public class InitDataService {
     private JobOfferRepository jobOfferRepository;
     @Autowired
     private MessageRepository messageRepository;
+    @Autowired
+    private UserProfileRepository userProfileRepository;
     
     // Generators
     @Autowired
@@ -82,8 +88,18 @@ public class InitDataService {
         deleteExistingData();
 
         // Generate new data
+        List<UserProfile> userProfiles = UserProfile.getUserProfiles();
+        UserProfile up1 = userProfiles.get(0);
+        UserProfile up2 = userProfiles.get(1);
+        userProfileRepository.save(Arrays.asList(up1, up2));
+
         List<AppUser> appUsers = appUserGenerator.generateAppUsers(USERS_TO_GENERATE);
         appUserRepository.save(appUsers);
+        
+        // TODO: tmp settings - admin user
+//        AppUser admin = new AppUser("admin", "admin", "admin@admin.pl", "admin");
+//        admin.setUserProfile(userProfileRepository.findByType("USER"));
+//        appUserRepository.save(admin);
         
         List<Cv> cvs = cvGenerator.generateCVs(appUserRepository.findAll());
         cvRepository.save(cvs);
@@ -112,6 +128,7 @@ public class InitDataService {
         cvRepository.deleteAll();
         jobOfferRepository.deleteAll();
         messageRepository.deleteAll();
+        userProfileRepository.deleteAll();
     }
 
     /**

@@ -44,19 +44,7 @@ public class LoginController {
             @RequestParam("login-password") String password) {
         // TODO : valid user
         // TODO : set session user and redirect to user panel and add user panel to view
-        AppUser tmp = null;
-        tmp = appUserService.findByEmailAndPassword(email, password);
-        System.out.println(tmp.getFirstname());
-        if (tmp != null) {
-            user = tmp;
-        }
-
-        return "tmp";
+        return null;
     }
-
-    @ModelAttribute("user")
-    public AppUser getUser() {
-        return new AppUser();
-    }
-
+    
 }

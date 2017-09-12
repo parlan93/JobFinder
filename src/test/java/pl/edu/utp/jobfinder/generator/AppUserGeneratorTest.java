@@ -3,11 +3,13 @@ package pl.edu.utp.jobfinder.generator;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
  * @author Bartłomiej Skibiński
  */
+@Ignore
 public class AppUserGeneratorTest {
 
     // Fields
