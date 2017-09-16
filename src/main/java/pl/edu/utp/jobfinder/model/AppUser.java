@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -35,13 +34,6 @@ public class AppUser implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, targetEntity = Cv.class, fetch = FetchType.EAGER)
     @JoinColumn
     private Cv cv;
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(joinColumns = {
-//        @JoinColumn(name = "appuser_id")}, inverseJoinColumns = {
-//        @JoinColumn(name = "userprofile_id")})
-    @ManyToOne(cascade = CascadeType.MERGE, targetEntity = UserProfile.class, fetch = FetchType.EAGER)
-    @JoinColumn
-    private UserProfile userProfile;
 
     // Constructors
     public AppUser() {
@@ -98,14 +90,6 @@ public class AppUser implements Serializable {
 
     public void setCv(Cv cv) {
         this.cv = cv;
-    }
-
-    public UserProfile getUserProfile() {
-        return userProfile;
-    }
-
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
     }
 
     // Equals and hashCode

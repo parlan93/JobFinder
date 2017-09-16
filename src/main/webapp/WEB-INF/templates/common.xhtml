@@ -16,6 +16,9 @@
         <h:outputScript library="js" name="custom.js" />
     </h:head>
     <h:body>
+        <ui:insert name="user-panel">
+            <ui:include src="user-panel.xhtml" />
+        </ui:insert>
         <ui:insert name="mobile-menu">
             <ui:include src="mobile-menu.xhtml" />
         </ui:insert>

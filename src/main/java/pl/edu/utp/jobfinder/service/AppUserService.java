@@ -1,5 +1,6 @@
 package pl.edu.utp.jobfinder.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,22 @@ public class AppUserService {
     private AppUserRepository appUserRepository;
 
     // Delegate methods
+    public List<AppUser> findAll() {
+        return appUserRepository.findAll();
+    }
+
+    public <S extends AppUser> List<S> save(Iterable<S> itrbl) {
+        return appUserRepository.save(itrbl);
+    }
+
+    public <S extends AppUser> S save(S s) {
+        return appUserRepository.save(s);
+    }
+
+    public AppUser findOne(Long id) {
+        return appUserRepository.findOne(id);
+    }
+
     public AppUser findByEmail(String email) {
         return appUserRepository.findByEmail(email);
     }

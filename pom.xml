@@ -15,6 +15,7 @@
         
         <!--Depenedencies versions-->
         <javax.version>7.0</javax.version>
+        <javax.mail.version>1.4.7</javax.mail.version>
         <spring.framework.version>4.3.10.RELEASE</spring.framework.version>
         <spring.framework.security.version>4.2.3.RELEASE</spring.framework.security.version>
         <spring.data.jpa.version>1.11.6.RELEASE</spring.data.jpa.version>
@@ -34,6 +35,13 @@
             <version>${javax.version}</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>${javax.mail.version}</version>
+        </dependency>
+
         
         <!--Spring Framework-->
         <dependency>
