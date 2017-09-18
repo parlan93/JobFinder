@@ -21,7 +21,11 @@ public class DataConverter {
         StringTokenizer tokenizer = new StringTokenizer(birthDate, "/");
         int tokens = tokenizer.countTokens();
         for (int i = 0; i < tokens; i++) {
-            builder.append(tokenizer.nextToken());
+            String token = tokenizer.nextToken();
+            if (i == 1) {
+                token = String.valueOf(Integer.valueOf(token) + 1);
+            }
+            builder.append(token);
             if (tokens - 1 != i) {
                 builder.append(".");
             }
@@ -29,7 +33,7 @@ public class DataConverter {
 
         return builder.toString().trim();
     }
-
+    
     public String addressConverter(String address) {
         StringBuilder builder = new StringBuilder();
 
