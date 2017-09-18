@@ -14,25 +14,25 @@
                         <div class="col-xs-4 col-sm-6">
                             <div class="user-bar-id pull-left">
                                 <h:graphicImage library="img" name="user-no-photo.png" alt="JobFinder User" title="JobFinder User" class="img-responsive user-bar-id-photo" />
-                                <h5 class="user-bar-id-name hidden-xs">Jan <span class="user-bar-id-lastname">Kowalski</span></h5>
+                                <h5 class="user-bar-id-name hidden-xs">#{user.firstname} <span class="user-bar-id-lastname">#{user.lastname}</span></h5>
                             </div>
                         </div>
                         <div class="col-xs-8 col-sm-6">
                             <ul class="user-bar-menu pull-right">
                                 <li>
-                                    <a href="#" title="TODO" class="user-bar-menu-link">
+                                    <a href="/JobFinder/account/messages" title="TODO" class="user-bar-menu-link">
                                         <i class="fa fa-envelope" aria-hidden="true"></i> 
                                         <span class="user-bar-menu-link-description hidden-xs hidden-sm">Komunikaty</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" title="TODO" class="user-bar-menu-link">
+                                    <a href="/JobFinder/account/dashboard" title="TODO" class="user-bar-menu-link">
                                         <i class="fa fa-user" aria-hidden="true"></i> 
                                         <span class="user-bar-menu-link-description hidden-xs hidden-sm">Profil</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" title="TODO" class="user-bar-menu-link">
+                                    <a href="/JobFinder/accout/logout" title="TODO" class="user-bar-menu-link">
                                         <i class="fa fa-sign-out" aria-hidden="true"></i> 
                                         <span class="user-bar-menu-link-description hidden-xs hidden-sm">Wyloguj</span>
                                     </a>

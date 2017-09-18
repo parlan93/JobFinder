@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="templates/common.xhtml">
+            <ui:define name="content">
+                <section class="user-messages">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="user-messages-header"><i class="fa fa-envelope" aria-hidden="true"></i> Applies</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                <c:forEach begin="0" end="${appliesAmount}" items="${applies}" var="apply" varStatus="status">
+                                    <c:choose>
+                                        <c:when test="${status.count % 2 eq 1}">
+                                            <a href="/JobFinder/account/applies/${apply.id}" title="${apply.jobOffer.position}" class="application-link">
+                                                <div class="row odd application">
+                                                    <div class="col-xs-12 col-md-6 col-lg-7 application-col-offer">
+                                                        <span class="user-application-offer">${apply.jobOffer.position} - ${apply.jobOffer.company}</span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-3 application-col-city">
+                                                        <span class="user-application-city">${apply.jobOffer.city}</span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-3 col-lg-2 application-col-date">
+                                                        <span class="user-application-date">${apply.jobOffer.date}</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="/JobFinder/account/applies/${apply.id}" title="${apply.jobOffer.position}" class="application-link">
+                                                <div class="row even application">
+                                                    <div class="col-xs-12 col-md-6 col-lg-7 application-col-offer">
+                                                        <span class="user-application-offer">${apply.jobOffer.position} - ${apply.jobOffer.company}</span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-3 application-col-city">
+                                                        <span class="user-application-city">${apply.jobOffer.city}</span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-md-3 col-lg-2 application-col-date">
+                                                        <span class="user-application-date">${apply.jobOffer.date}</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
