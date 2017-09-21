@@ -1,5 +1,6 @@
 package pl.edu.utp.jobfinder.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.edu.utp.jobfinder.enumerator.EducationTitle;
+import pl.edu.utp.jobfinder.enumerator.LevelOfEducation;
 import pl.edu.utp.jobfinder.generator.converter.DataConverter;
 import pl.edu.utp.jobfinder.generator.extractor.DataExtractor;
 import pl.edu.utp.jobfinder.model.AppUser;
@@ -131,6 +134,17 @@ public class AppUserController {
         model.addAttribute("cvPersonalDataAddressFlat", dataExtractor.addressFlatExtractor(user.getCv().getAddress()));
         model.addAttribute("cvPersonalDataAddressPostCode", dataExtractor.addressPostCodeExtractor(user.getCv().getAddress()));
         model.addAttribute("cvPersonalDataAddressCity", dataExtractor.addressCityExtractor(user.getCv().getAddress()));
+
+        model.addAttribute("cvEducationLevelOfEducations", LevelOfEducation.values());
+        model.addAttribute("cvEducationEducationTitles", EducationTitle.values());
+        model.addAttribute("cvEducationSchools", user.getCv().getSchools());
+        model.addAttribute("cvEducationSubjects", user.getCv().getSubjects());
+        model.addAttribute("cvEducationEducationDates", user.getCv().getEducationDates());
+        model.addAttribute("cvEducationBeginningMonths", dataExtractor.educationBeginningDateMonthsExtractor(user.getCv().getEducationDates()));
+        model.addAttribute("cvEducationBeginningYears", dataExtractor.educationBeginningDateYearsExtractor(user.getCv().getEducationDates()));
+        model.addAttribute("cvEducationEndMonths", dataExtractor.educationEndDateMonthsExtractor(user.getCv().getEducationDates()));
+        model.addAttribute("cvEducationEndYears", dataExtractor.educationEndDateYearsExtractor(user.getCv().getEducationDates()));
+
         return "userCv";
     }
 
@@ -150,13 +164,13 @@ public class AppUserController {
             @RequestParam(name = "personal-address-city") String city,
             @RequestParam(name = "personal-user-id") Long userId,
             @RequestParam(name = "personal-cv-id") Long cvId
-            ) {
+    ) {
         AppUser appUser = appUserService.findOne(userId);
         appUser.setFirstname(firstname.trim());
         appUser.setLastname(lastname.trim());
         appUser.setEmail(email.trim());
         appUserService.save(appUser);
-        
+
         Cv cv = cvService.findOne(cvId);
         cv.setFirstname(firstname.trim());
         cv.setLastname(lastname.trim());
@@ -165,8 +179,49 @@ public class AppUserController {
         address.append(street).append(";").append(building).append(";").append(local).append(";").append(post).append(";").append(city);
         cv.setAddress(address.toString().trim());
         cvService.save(cv);
-        
+
         return "userCvPersonalDataSaveSuccess";
+    }
+
+    @RequestMapping("/cv/education/save")
+    public String cvEducationSave(Model model,
+            @RequestParam(name = "education-level") String level,
+            @RequestParam(name = "education-title") String title,
+            @RequestParam(name = "education-school[]") List<String> schools,
+            @RequestParam(name = "education-subject[]") List<String> subjects,
+            @RequestParam(name = "education-beginning-month[]") List<String> beginningMonths,
+            @RequestParam(name = "education-beginning-year[]") List<String> beginningYears,
+            @RequestParam(name = "education-end-month[]") List<String> endMonths,
+            @RequestParam(name = "education-end-year[]") List<String> endYears,
+            @RequestParam(name = "personal-user-id") Long userId,
+            @RequestParam(name = "personal-cv-id") Long cvId
+    ) {
+        Cv cv = cvService.findOne(cvId);
+        
+        for (LevelOfEducation value : LevelOfEducation.values()) {
+            if (value.getLevelOfEducationEN().equals(level)) {
+                cv.setLevelOfEducation(value);
+            }
+        }
+        for (EducationTitle value : EducationTitle.values()) {
+            if (value.getTitlePL().equals(title)) {
+                cv.setEducationTitle(value);
+            }
+        }
+        
+        if(schools.size() > 0) {
+            cv.setSchools(schools);
+            cv.setSubjects(subjects);
+            cv.setEducationDates(dataConverter.educationDatesConverter(beginningMonths, beginningYears, endMonths, endYears));
+        } else {
+            cv.setSchools(new ArrayList<String>());
+            cv.setSubjects(new ArrayList<String>());
+            cv.setEducationDates(new ArrayList<String>());
+        }
+
+        cvService.save(cv);
+        
+        return "userCvEducationSaveSuccess";
     }
 
     @RequestMapping("/messages")

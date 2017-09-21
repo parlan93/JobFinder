@@ -5,6 +5,8 @@
  */
 package pl.edu.utp.jobfinder.generator.converter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +35,7 @@ public class DataConverter {
 
         return builder.toString().trim();
     }
-    
+
     public String addressConverter(String address) {
         StringBuilder builder = new StringBuilder();
 
@@ -49,6 +51,16 @@ public class DataConverter {
         }
 
         return builder.toString().trim();
+    }
+
+    public List<String> educationDatesConverter(List<String> beginningMonths, List<String> beginningYears, List<String> endMonths, List<String> endYears) {
+        List<String> educationDates = new ArrayList<>();
+        for (int i = 0; i < beginningMonths.size(); i++) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(beginningMonths.get(i)).append("/").append(beginningYears.get(i)).append(";").append(endMonths.get(i)).append("/").append(endYears.get(i));
+            educationDates.add(sb.toString());
+        }
+        return educationDates;
     }
 
 }
