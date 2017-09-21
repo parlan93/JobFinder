@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.edu.utp.jobfinder.generator.extractor;
 
 import java.util.ArrayList;
@@ -12,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author bskibinski
+ * @author Bartłomiej Skibiński
  */
 @Component
 public class DataExtractor {
@@ -116,6 +111,55 @@ public class DataExtractor {
             returnDates.add(tokenizer.nextToken());
         }
         return returnDates;
+    }
+
+    public String shortFromDateMonthExtractor(String dates) {
+        return shortDateMonthExtractor(dates, true);
+    }
+
+    public String shortToDateMonthExtractor(String dates) {
+        return shortDateMonthExtractor(dates, false);
+    }
+
+    public String shortFromDateYearExtractor(String dates) {
+        return shortDateYearExtractor(dates, true);
+    }
+
+    public String shortToDateYearExtractor(String dates) {
+        return shortDateYearExtractor(dates, false);
+    }
+
+    private String shortDateMonthExtractor(String dates, boolean fromDate) {
+        String date;
+        if (fromDate) {
+            date = separateDateFromTo(dates).get(0);
+        } else {
+            date = separateDateFromTo(dates).get(1);
+        }
+        StringTokenizer tokenizer = new StringTokenizer(date, "/");
+        return tokenizer.nextToken();
+    }
+
+    private String shortDateYearExtractor(String dates, boolean fromDate) {
+        String date;
+        if (fromDate) {
+            date = separateDateFromTo(dates).get(0);
+        } else {
+            date = separateDateFromTo(dates).get(1);
+        }
+        StringTokenizer tokenizer = new StringTokenizer(date, "/");
+        tokenizer.nextToken();
+        return tokenizer.nextToken();
+    }
+
+    private List<String> separateDateFromTo(String dates) {
+        List<String> datesList = new ArrayList<>();
+        StringTokenizer tokenizer = new StringTokenizer(dates, ";");
+        String fromDate = tokenizer.nextToken();
+        String toDate = tokenizer.nextToken();
+        datesList.add(fromDate);
+        datesList.add(toDate);
+        return datesList;
     }
 
 }
