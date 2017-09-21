@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="templates/common.xhtml">
+            <ui:define name="content">
+
+                <section class="user-cv">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!-- PERSONAL INFORMATION -->
+                                <div class="row user-cv-panel">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <h3 class="user-cv-header"><i class="fa fa-user" aria-hidden="true"></i> Personal Data</h3>
+                                                <p class="user-cv-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                        <form action="/JobFinder/account/cv/personal-data/save" id="cv-personal-form" method="post">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="personal-name" class="input-label">Firstname</label>
+                                                        <input type="text" name="personal-name" id="personal-name" class="form-control input" placeholder="Firstname" value="#{cv.firstname}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="personal-lastname" class="input-label">Lastname</label>
+                                                        <input type="text" name="personal-lastname" id="personal-lastname" class="form-control input" placeholder="Lastname" value="#{cv.lastname}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="input-label">Birthday</label>
+                                                        <div class="row">
+                                                            <div class="col-xs-2 col-no-space">
+                                                                <div class="form-group">
+                                                                    <label for="personal-birth-day" class="input-label input-label-second">Day</label>
+                                                                    <select id="personal-birth-day" class="form-control input select input-middle" name="personal-birth-day">
+                                                                        <c:forEach begin="0" end="30" varStatus="index">
+                                                                            <c:choose>
+                                                                                <c:when test="${(index.count) eq cvPersonalDataBirthDateDay}">
+                                                                                    <option value="${index.count}" selected="selected">${index.count}</option>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <option value="${index.count}">${index.count}</option>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-7 col-no-space">
+                                                                <div class="form-group">
+                                                                    <label for="personal-birth-month" class="input-label input-label-second">Month</label>
+                                                                    <select id="personal-birth-month" class="form-control input select" name="personal-birth-month">
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 0}">
+                                                                                <option value="0" selected="selected">Januray</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="0">Januray</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 1}">
+                                                                                <option value="1" selected="selected">February</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="1">February</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 2}">
+                                                                                <option value="2" selected="selected">March</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="2">March</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 3}">
+                                                                                <option value="3" selected="selected">April</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="3">April</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 4}">
+                                                                                <option value="4" selected="selected">May</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="4">May</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 5}">
+                                                                                <option value="5" selected="selected">June</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="5">June</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 6}">
+                                                                                <option value="6" selected="selected">July</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="6">July</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 7}">
+                                                                                <option value="7" selected="selected">August</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="7">August</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 8}">
+                                                                                <option value="8" selected="selected">September</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="8">September</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 9}">
+                                                                                <option value="9" selected="selected">October</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="9">October</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 10}">
+                                                                                <option value="10" selected="selected">November</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="10">November</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                        <c:choose>
+                                                                            <c:when test="${cvPersonalDataBirthDateMonth eq 11}">
+                                                                                <option value="11" selected="selected">December</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="11">December</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-3 col-no-space">
+                                                                <div class="form-group">
+                                                                    <label for="personal-birth-year" class="input-label input-label-second">Year</label>
+                                                                    <select id="personal-birth-year" class="form-control input select input-middle" name="personal-birth-year">
+                                                                        <c:forEach begin="1950" end="2005" varStatus="status">
+                                                                            <c:choose>
+                                                                                <c:when test="${(status.count + 1949) eq cvPersonalDataBirthDateYear}">
+                                                                                    <option value="${status.count + 1949}" selected="selected">${status.count + 1949}</option>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <option value="${status.count + 1949}">${status.count + 1949}</option>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="personal-phone" class="input-label">Phone</label>
+                                                        <input type="text" name="personal-phone" id="personal-phone" class="form-control input" placeholder="Phone number" value="#{cv.phone}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="personal-email" class="input-label">E-mail</label>
+                                                        <input type="email" name="personal-email" id="personal-email" class="form-control input" placeholder="E-mail address" value="#{cv.email}" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="input-label">Address</label>
+                                                        <div class="row">
+                                                            <div class="col-xs-8 col-no-space">
+                                                                <div class="form-group">
+                                                                    <label for="personal-address-street" class="input-label input-label-second">Street</label>
+                                                                    <input type="text" name="personal-address-street" id="personal-address-street" class="form-control input" placeholder="Street" value="#{cvPersonalDataAddressStreet}" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-2 col-no-space">
+                                                                <div class="form-group">
+                                                                    <label for="personal-address-building" class="input-label input-label-second">Nr</label>
+                                                                    <input type="text" name="personal-address-building" id="personal-address-building" class="form-control input input-middle" placeholder="Nr" value="#{cvPersonalDataAddressNr}" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-2 col-no-space">
+                                                                <div class="form-group">
+                                                                    <label for="personal-address-local" class="input-label input-label-second">Flat</label>
+                                                                    <input type="text" name="personal-address-local" id="personal-address-local" class="form-control input input-middle" placeholder="Flat" value="#{cvPersonalDataAddressFlat}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-4 col-no-space">
+                                                                <div class="form-group">
+                                                                    <label for="personal-address-post" class="input-label input-label-second">PostCode</label>
+                                                                    <input type="text" name="personal-address-post" id="personal-address-post" class="form-control input input-middle" placeholder="PostCode" value="#{cvPersonalDataAddressPostCode}" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xs-8 col-no-space">
+                                                                <div class="form-group">
+                                                                    <label for="personal-address-city" class="input-label input-label-second">City</label>
+                                                                    <input type="text" name="personal-address-city" id="personal-address-city" class="form-control input" placeholder="City" value="#{cvPersonalDataAddressCity}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" name="personal-cv-id" value="#{user.cv.id}" />
+                                                    <input type="hidden" name="personal-user-id" value="#{user.id}" />
+                                                    <div class="form-group login-input-group">
+                                                        <button type="submit" value="submit" class="btn btn-default btn-cv-save pull-right" title="Save personal data"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+                                                    </div>	
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- PERSONAL INFORMATION end -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!-- EDUCATION INFORMATION -->
+                                <div class="row user-cv-panel">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <h3 class="user-cv-header"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Education</h3>
+                                                <p class="user-cv-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                        <form action="/JobFinder/account/cv/education/save" id="cv-education-form" method="post">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="education-level" class="input-label">Level of education</label>
+                                                        <select id="education-level" class="form-control input select" name="education-level">
+                                                            <c:forEach items="${cvEducationLevelOfEducations}" var="levelOfEducation">
+                                                                <c:choose>
+                                                                    <c:when test="${levelOfEducation eq cv.levelOfEducation}">
+                                                                        <option value="${levelOfEducation.levelOfEducationEN}" selected="selected">${levelOfEducation.levelOfEducationEN}</option>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <option value="${levelOfEducation.levelOfEducationEN}">${levelOfEducation.levelOfEducationEN}</option>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="education-title" class="input-label">Education title</label>
+                                                        <select id="education-title" class="form-control input select" name="education-title">
+                                                            <c:forEach items="${cvEducationEducationTitles}" var="educationTitle">
+                                                                <c:choose>
+                                                                    <c:when test="${educationTitle eq cv.educationTitle}">
+                                                                        <option value="${educationTitle.titleEN}" selected="selected">${educationTitle.titleEN}</option>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <option value="${educationTitle.titleEN}">${educationTitle.titleEN}</option>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <a href="#" class="btn btn-default btn-plus" id="btn-add-school" title="Add School/University"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</a>
+                                                </div>
+                                            </div>
+
+                                            <!-- SCHOOL FORM -->
+                                            <div class="row">
+                                                <div class="col-xs-12" id="schools">
+                                                    <!-- GENERATED AUTOMATICALLY -->
+                                                    <c:choose>
+                                                        <c:when test="${cvEducationSchools != null}">
+                                                            <c:forEach begin="0" end="${cvEducationSchools.size() - 1}" varStatus="counter">
+
+                                                                <div class="row school"> 
+                                                                    <div class="col-xs-12 col-sm-8"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="education-school-${counter.count - 1}" class="input-label">School / University</label> 
+                                                                            <input type="text" name="education-school[]" id="education-school-${counter.count - 1}" class="form-control input" placeholder="School / University name" value="${cvEducationSchools.get(counter.count - 1)}" /> 
+                                                                        </div> 
+                                                                    </div> 
+                                                                    <div class="col-xs-12 col-sm-4"> 
+                                                                        <div class="form-group"> 
+                                                                            <label for="education-subject-${counter.count - 1}" class="input-label">Subject</label> 
+                                                                            <input type="text" name="education-subject[]" id="education-subject-${counter.count - 1}" class="form-control input" placeholder="Subject" value="${cvEducationSubjects.get(counter.count - 1)} "/> 
+                                                                        </div> 
+                                                                    </div> 
+
+                                                                    <div class="col-xs-12 col-sm-6"> 
+                                                                        <div class="form-group"> 
+                                                                            <label class="input-label">Beginning</label> 
+                                                                            <div class="row"> 
+                                                                                <div class="col-xs-8 col-no-space"> 
+                                                                                    <div class="form-group"> 
+                                                                                        <label for="education-beginning-month-${counter.count - 1}" class="input-label input-label-second">Month</label> 
+                                                                                        <select id="education-beginning-month-${counter.count - 1}" class="form-control input select" name="education-beginning-month[]"> 
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 0}">
+                                                                                                    <option value="0" selected="selected">Januray</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="0">Januray</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 1}">
+                                                                                                    <option value="1" selected="selected">February</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="1">February</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 2}">
+                                                                                                    <option value="2" selected="selected">March</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="2">March</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 3}">
+                                                                                                    <option value="3" selected="selected">April</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="3">April</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 4}">
+                                                                                                    <option value="4" selected="selected">May</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="4">May</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 5}">
+                                                                                                    <option value="5" selected="selected">June</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="5">June</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 6}">
+                                                                                                    <option value="6" selected="selected">July</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="6">July</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 7}">
+                                                                                                    <option value="7" selected="selected">August</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="7">August</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 8}">
+                                                                                                    <option value="8" selected="selected">September</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="8">September</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 9}">
+                                                                                                    <option value="9" selected="selected">October</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="9">October</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 10}">
+                                                                                                    <option value="10" selected="selected">November</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="10">November</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationBeginningMonths.get(counter.count - 1) eq 11}">
+                                                                                                    <option value="11" selected="selected">December</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="11">December</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                        </select> 
+                                                                                    </div> 
+                                                                                </div> 
+                                                                                <div class="col-xs-4 col-no-space"> 
+                                                                                    <div class="form-group"> 
+                                                                                        <label for="education-beginning-year-${counter.count - 1}" class="input-label input-label-second">Rok</label> 
+                                                                                        <select id="education-beginning-year-${counter.count - 1}" class="form-control input select input-middle" name="education-beginning-year[]"> 
+                                                                                            <c:forEach begin="1950" end="2017" varStatus="year">
+                                                                                                <c:choose>
+                                                                                                    <c:when test="${(year.count + 1949) eq cvEducationBeginningYears.get(counter.count - 1)}">
+                                                                                                        <option value="${year.count + 1949}" selected="selected">${year.count + 1949}</option>
+                                                                                                    </c:when>
+                                                                                                    <c:otherwise>
+                                                                                                        <option value="${year.count + 1949}">${year.count + 1949}</option>
+                                                                                                    </c:otherwise>
+                                                                                                </c:choose>
+                                                                                            </c:forEach>
+                                                                                        </select> 
+                                                                                    </div> 
+                                                                                </div> 
+                                                                            </div> 
+                                                                        </div> 
+                                                                    </div> 
+
+                                                                    <div class="col-xs-12 col-sm-6"> 
+                                                                        <div class="form-group"> 
+                                                                            <label class="input-label">Koniec</label> 
+                                                                            <div class="row"> 
+                                                                                <div class="col-xs-8 col-no-space"> 
+                                                                                    <div class="form-group"> 
+                                                                                        <label for="education-end-month-${counter.count - 1}" class="input-label input-label-second">Month</label> 
+                                                                                        <select id="education-end-month-${counter.count - 1}" class="form-control input select" name="education-end-month[]"> 
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 0}">
+                                                                                                    <option value="0" selected="selected">Januray</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="0">Januray</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 1}">
+                                                                                                    <option value="1" selected="selected">February</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="1">February</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 2}">
+                                                                                                    <option value="2" selected="selected">March</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="2">March</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 3}">
+                                                                                                    <option value="3" selected="selected">April</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="3">April</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 4}">
+                                                                                                    <option value="4" selected="selected">May</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="4">May</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 5}">
+                                                                                                    <option value="5" selected="selected">June</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="5">June</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 6}">
+                                                                                                    <option value="6" selected="selected">July</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="6">July</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 7}">
+                                                                                                    <option value="7" selected="selected">August</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="7">August</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 8}">
+                                                                                                    <option value="8" selected="selected">September</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="8">September</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 9}">
+                                                                                                    <option value="9" selected="selected">October</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="9">October</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 10}">
+                                                                                                    <option value="10" selected="selected">November</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="10">November</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                            <c:choose>
+                                                                                                <c:when test="${cvEducationEndMonths.get(counter.count - 1) eq 11}">
+                                                                                                    <option value="11" selected="selected">December</option>
+                                                                                                </c:when>
+                                                                                                <c:otherwise>
+                                                                                                    <option value="11">December</option>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                        </select> 
+                                                                                    </div>
+                                                                                </div> 
+                                                                                <div class="col-xs-4 col-no-space"> 
+                                                                                    <div class="form-group"> 
+                                                                                        <label for="education-end-year-${counter.count - 1}" class="input-label input-label-second">Rok</label> 
+                                                                                        <select id="education-end-year-${counter.count - 1}" class="form-control input select input-middle" name="education-end-year[]"> 
+                                                                                            <c:forEach begin="1950" end="2017" varStatus="year">
+                                                                                                <c:choose>
+                                                                                                    <c:when test="${(year.count + 1949) eq cvEducationEndYears.get(counter.count - 1)}">
+                                                                                                        <option value="${year.count + 1949}" selected="selected">${year.count + 1949}</option>
+                                                                                                    </c:when>
+                                                                                                    <c:otherwise>
+                                                                                                        <option value="${year.count + 1949}">${year.count + 1949}</option>
+                                                                                                    </c:otherwise>
+                                                                                                </c:choose>
+                                                                                            </c:forEach>
+                                                                                        </select> 
+                                                                                    </div> 
+                                                                                </div> 
+                                                                            </div> 
+                                                                        </div> 
+                                                                    </div> 
+
+                                                                    <div class="col-xs-12"> 
+                                                                        <a href="#" class="btn btn-default btn-minus pull-right btn-delete-school">
+                                                                            <i class="fa fa-trash" aria-hidden="true"></i> Usuń
+                                                                        </a> 
+                                                                    </div> 
+                                                                </div>
+
+                                                            </c:forEach>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </div>
+                                            </div><!-- SCHOOL end -->
+
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="form-group login-input-group">
+                                                        <button type="submit" value="submit" class="btn btn-default btn-cv-save pull-right" title="Zapisz informacje o edukacji"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <input type="hidden" name="personal-cv-id" value="#{user.cv.id}" />
+                                            <input type="hidden" name="personal-user-id" value="#{user.id}" />
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- EDUCATION INFORMATION end -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!-- EXPERIENCE INFORMATION -->
+                                <div class="row user-cv-panel">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <h3 class="user-cv-header"><i class="fa fa-suitcase" aria-hidden="true"></i> Experience</h3>
+                                                <p class="user-cv-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <a href="#" class="btn btn-default btn-plus" id="btn-add-employer" title="Dodaj miejsce pracy"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</a>
+                                            </div>
+                                        </div>
+                                        <form action="#" id="cv-experience-form" method="post">
+                                            <div id="experience-employers">
+                                                <!-- GENERATED AUTOMATICALLY -->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="form-group login-input-group">
+                                                        <button type="submit" value="submit" class="btn btn-default btn-cv-save pull-right" title="Zapisz informacje o doświadczeniu"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- EXPERIENCE INFORMATION end -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!-- SKILLS INFORMATION -->
+                                <div class="row user-cv-panel">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <h3 class="user-cv-header"><i class="fa fa-cogs" aria-hidden="true"></i> Skills</h3>
+                                                <p class="user-cv-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <a href="#" class="btn btn-default btn-plus" id="btn-add-skill" title="Dodaj umiejętność"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</a>
+                                            </div>
+                                        </div>
+                                        <form action="#" id="cv-skills-form" method="post">
+                                            <div id="skills">
+                                                <!-- GENERATED AUTOMATICALLY -->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="form-group login-input-group">
+                                                        <button type="submit" value="submit" class="btn btn-default btn-cv-save pull-right" title="Zapisz informacje o umiejętnościach"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- SKILLS INFORMATION end -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!-- LANGUAGES INFORMATION -->
+                                <div class="row user-cv-panel">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <h3 class="user-cv-header"><i class="fa fa-language" aria-hidden="true"></i> Foreign languages</h3>
+                                                <p class="user-cv-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <a href="#" class="btn btn-default btn-plus" id="btn-add-language" title="Dodaj język obcy"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</a>
+                                            </div>
+                                        </div>
+                                        <form action="#" id="cv-languages-form" method="post">
+                                            <div id="languages">
+                                                <!-- GENERATED AUTOMATICALLY -->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="form-group login-input-group">
+                                                        <button type="submit" value="submit" class="btn btn-default btn-cv-save pull-right" title="Zapisz informacje o językach obcych"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- LANGUAGES INFORMATION end -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <!-- INTERESTS INFORMATION -->
+                                <div class="row user-cv-panel">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <h3 class="user-cv-header"><i class="fa fa-heart" aria-hidden="true"></i> Interests</h3>
+                                                <p class="user-cv-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <a href="#" class="btn btn-default btn-plus" id="btn-add-interest" title="Dodaj zainteresowania"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add</a>
+                                            </div>
+                                        </div>
+                                        <form action="#" id="cv-interests-form" method="post">
+                                            <div class="row" id="interests">
+                                                <!-- GENERATED AUTOMATICALLY -->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="form-group login-input-group">
+                                                        <button type="submit" value="submit" class="btn btn-default btn-cv-save pull-right" title="Zapisz informacje o zainteresowaniach"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- INTERESTS INFORMATION end -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="user-cv-header"><i class="fa fa-user-circle" aria-hidden="true"></i> About</h3>
+                                <p class="user-cv-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                            <!-- ABOUT INFORMATION -->
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="about" class="input-label">About</label>
+                                    <textarea name="about" id="about" class="form-control input textarea" placeholder="O sobie..." rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group login-input-group">
+                                    <button type="submit" value="submit" class="btn btn-default btn-cv-save pull-right" title="Zapis informacje o sobie"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
+                                </div>
+                            </div>
+                            <!-- ABOUT INFORMATION end -->
+                        </div>
+
+                    </div>
+                </section>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

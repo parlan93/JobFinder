@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    >
+    <h:body>
+        <ui:composition template="templates/common.xhtml">
+            <ui:define name="user-panel" />
+            <ui:define name="content">
+                <section class="job-finder">
+                    <div class="container">
+                        <form class="" id="job-finder" action="/JobFinder/job-offers" method="post">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="form-group job-finder-input-group">
+                                        <label for="job-finder-business" class="job-finder-input-label">Business</label>
+                                        <select id="job-finder-business" class="form-control job-finder-select" name="job-finder-business">
+                                            <c:choose>
+                                                <c:when test="${selectedBusiness == '*'}">
+                                                    <option value="*" selected="selected">All</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="*">All</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:forEach items="${businesses}" var="business">
+                                                <c:choose>
+                                                    <c:when test="${selectedBusiness.equals(business)}">
+                                                        <option value="#{business}" selected="selected">${business}</option>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <option value="#{business}">${business}</option>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="form-group job-finder-input-group">
+                                        <label for="job-finder-city" class="job-finder-input-label">City</label>
+                                        <select id="job-finder-city" class="form-control job-finder-select" name="job-finder-city">
+                                            <c:choose>
+                                                <c:when test="${selectedCity == '*'}">
+                                                    <option value="*" selected="selected">All</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="*">All</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:forEach items="${cities}" var="city">
+                                                <c:choose>
+                                                    <c:when test="${selectedCity.equals(city)}">
+                                                        <option value="#{city}" selected="selected">${city}</option>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <option value="#{city}">${city}</option>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="form-group job-finder-input-group">
+                                        <label for="job-finder-employment" class="job-finder-input-label">Job time</label>
+                                        <select id="job-finder-employment" class="form-control job-finder-select" name="job-finder-employment">
+                                            <c:choose>
+                                                <c:when test="${selectedWorkTime == '*'}">
+                                                    <option value="*" selected="selected">All</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="*">All</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <!--TODO: workTime pretty value-->
+                                            <c:forEach items="${workTimes}" var="workTime">
+                                                <c:choose>
+                                                    <c:when test="${selectedWorkTime.equals(workTime)}">
+                                                        <option value="#{workTime}" selected="selected">${workTime}</option>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <option value="#{workTime}">${workTime}</option>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                                    <div class="job-finder-input-group form-group">
+                                        <button type="submit" value="submit" class="form-control job-finder-submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="job-offers">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3>Search results</h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <c:choose>
+                                    <c:when test="${jobOffers.size() > 0}">
+                                        <ui:repeat value="#{jobOffers}" var="jobOffer" varStatus="status">
+                                            <div class="row #{status.even ? 'odd' : 'even'}">
+                                                <div class="col-sm-2 hidden-xs pull-left single-offer-image-wrapper">
+                                                    <h:graphicImage library="img" name="logo-offer.png" alt="Job Offer" title="Job Offer" class="img-responsive single-offer-image" />
+                                                </div>
+                                                <div class="col-xs-12 col-sm-10 pull-right single-offer">
+                                                    <h3 class="single-offer-title"><a href="/JobFinder/job-offers/#{jobOffer.id}" title="" class="single-offer-link"><h:outputText value="#{jobOffer.position}" /></a></h3>
+                                                    <h5 class="single-offer-company"><h:outputText value="#{jobOffer.company}" /></h5>
+                                                    <p class="single-offer-description">
+                                                        <i class="fa fa-map-marker" aria-hidden="true"></i><h:outputText value=" #{jobOffer.city} " /><span class="single-offer-date">
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i><h:outputText value=" #{jobOffer.date}" /></span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </ui:repeat>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <h4>Nothing found :(</h4>
+                                    </c:otherwise>
+                                </c:choose>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

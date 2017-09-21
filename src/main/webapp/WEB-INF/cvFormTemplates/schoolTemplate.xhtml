@@ -1,0 +1,65 @@
+<div class="row school even"> 
+    <div class="col-xs-12 col-sm-8"> 
+        <div class="form-group"> 
+            <label for="education-school-' + id + '" class="input-label">Szkoła / Uczelnia</label> 
+            <input type="text" name="education-school[]" id="education-school-' + id + '" class="form-control input" placeholder="Nazwa szkoły / uczelni" /> 
+        </div> 
+    </div> 
+    <div class="col-xs-12 col-sm-4"> 
+        <div class="form-group"> 
+            <label for="education-subject-' + id + '" class="input-label">Profil / Kierunek</label> 
+            <input type="text" name="education-subject[]" id="education-subject-' + id + '" class="form-control input" placeholder="Profil / Kierunek" /> 
+        </div> 
+    </div> 
+    <div class="col-xs-12 col-sm-6"> 
+        <div class="form-group"> 
+            <label class="input-label">Początek</label> 
+            <div class="row"> 
+                <div class="col-xs-8 col-no-space"> 
+                    <div class="form-group"> 
+                        <label for="education-beginning-month-' + id + '" class="input-label input-label-second">Miesiąc</label> 
+                        <select id="education-beginning-month-' + id + '" class="form-control input select" name="education-beginning-month[]"> 
+                            <option value="October">Październik</option> 
+                        </select> 
+                    </div> 
+                </div> 
+                <div class="col-xs-4 col-no-space"> 
+                    <div class="form-group"> 
+                        <label for="education-beginning-year-' + id + '" class="input-label input-label-second">Rok</label> 
+                        <select id="education-beginning-year-' + id + '" class="form-control input select input-middle" name="education-beginning-year[]"> 
+                            <option value="2013">2013</option> 
+                        </select> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+    <div class="col-xs-12 col-sm-6"> 
+        <div class="form-group"> 
+            <label class="input-label">Koniec</label> 
+            <div class="row"> 
+                <div class="col-xs-8 col-no-space"> 
+                    <div class="form-group"> 
+                        <label for="education-end-month-' + id + '" class="input-label input-label-second">Miesiąc</label> 
+                        <select id="education-end-month-' + id + '" class="form-control input select" name="education-end-month[]"> 
+                            <option value="October">Październik</option> 
+                        </select> 
+                    </div> 
+                </div> 
+                <div class="col-xs-4 col-no-space"> 
+                    <div class="form-group"> 
+                        <label for="education-end-year-' + id + '" class="input-label input-label-second">Rok</label> 
+                        <select id="education-end-year-' + id + '" class="form-control input select input-middle" name="education-end-year[]"> 
+                            <option value="2013">2013</option> 
+                        </select> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+    <div class="col-xs-12"> 
+        <a href="#" class="btn btn-default btn-minus pull-right btn-delete-school">
+            <i class="fa fa-trash" aria-hidden="true"></i> Usuń
+        </a> 
+    </div> 
+</div>

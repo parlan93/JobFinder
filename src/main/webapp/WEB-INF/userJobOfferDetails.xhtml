@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    >
+    <h:body>
+        <ui:composition template="templates/common.xhtml">
+            <ui:define name="content">
+                <section class="job-offers job-advertisement">
+                    <div class="container">
+                        <div class="row odd">
+                            <div class="col-sm-2 hidden-xs pull-left single-offer-image-wrapper">
+                                <h:graphicImage library="img" name="logo-offer.png" alt="Job Offer" title="Job Offer" class="img-responsive single-offer-image" />
+                            </div>
+                            <div class="col-xs-12 col-sm-10 pull-right single-offer">
+                                <h3 class="single-offer-title"><h:outputText value="#{jobOffer.position}" /></h3>
+                                <h5 class="single-offer-company"><i class="fa fa-building single-offer-icon" aria-hidden="true"></i><h:outputText value=" #{jobOffer.company}" /></h5>
+                                <p class="single-offer-description job-advertisement-paragraph"><i class="fa fa-map-marker single-offer-icon" aria-hidden="true"></i><h:outputText value=" #{jobOffer.city}" /></p>
+                                <p class="single-offer-description job-advertisement-paragraph"><i class="fa fa-calendar single-offer-icon" aria-hidden="true"></i><h:outputText value=" #{jobOffer.date}" /></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="job-offers job-advertisement-info">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4 class="job-advertisement-info-header">Description</h4>
+                                <p class="job-advertisement-info-description">
+                                    <h:outputText value="#{jobOffer.description}" />
+                                </p>
+                                <h4 class="job-advertisement-info-header">Requirements</h4>
+                                <ul class="job-advertisement-info-list">
+                                    <ui:repeat value="#{jobOffer.requirements}" var="requirement">
+                                        <li><h:outputText value="#{requirement}" /></li>
+                                    </ui:repeat>
+                                </ul>
+                                <h4 class="job-advertisement-info-header">Additional advantages</h4>
+                                <ul class="job-advertisement-info-list">
+                                    <ui:repeat value="#{jobOffer.advantages}" var="advantage">
+                                        <li><h:outputText value="#{advantage}" /></li>
+                                    </ui:repeat>
+                                </ul>
+                                <h4 class="job-advertisement-info-header">Business</h4>
+                                <p class="job-advertisement-info-description"><h:outputText value="#{jobOffer.business}" /></p>
+                                <h4 class="job-advertisement-info-header">Job time</h4>
+                                <p class="job-advertisement-info-description"><h:outputText value="#{jobOffer.workTime.workTimeEN}" /></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

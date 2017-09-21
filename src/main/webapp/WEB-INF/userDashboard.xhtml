@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:body>
+        <ui:composition template="templates/common.xhtml">
+            <ui:define name="content">
+                <section class="user-dashboard">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="user-dashboard-header"><i class="fa fa-user-circle" aria-hidden="true"></i> Profile</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua.</p>
+                            </div>
+                        </div>
+
+                        <div class="row user-dashboard-profile">
+                            <div class="col-xs-12">
+                                <div class="row odd">
+                                    <div class="col-xs-5 col-sm-4 col-md-3"><h6 class="user-dashboard-profile-field">Firstname:</h6></div>
+                                    <div class="col-xs-7 col-sm-8 col-md-9"><h6 class="user-dashboard-profile-value">#{user.firstname}</h6></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-5 col-sm-4 col-md-3"><h6 class="user-dashboard-profile-field">Lastname:</h6></div>
+                                    <div class="col-xs-7 col-sm-8 col-md-9"><h6 class="user-dashboard-profile-value">#{user.lastname}</h6></div>
+                                </div>
+                                <div class="row odd">
+                                    <div class="col-xs-5 col-sm-4 col-md-3"><h6 class="user-dashboard-profile-field">Birthday:</h6></div>
+                                    <div class="col-xs-7 col-sm-8 col-md-9"><h6 class="user-dashboard-profile-value">#{userBirthDate}</h6></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-5 col-sm-4 col-md-3"><h6 class="user-dashboard-profile-field">Address:</h6></div>
+                                    <div class="col-xs-7 col-sm-8 col-md-9"><h6 class="user-dashboard-profile-value">#{userAddress}</h6></div>
+                                </div>
+                                <div class="row odd">
+                                    <div class="col-xs-5 col-sm-4 col-md-3"><h6 class="user-dashboard-profile-field">Level of education:</h6></div>
+                                    <div class="col-xs-7 col-sm-8 col-md-9"><h6 class="user-dashboard-profile-value">#{user.cv.levelOfEducation.getLevelOfEducationEN()}</h6></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <a href="/JobFinder/account/cv" title="CV" class="btn btn-default btn-user-panel-more pull-right">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Manage
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h3 class="user-dashboard-header"><i class="fa fa-envelope" aria-hidden="true"></i> Messages</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+
+                                        <c:choose>
+                                            <c:when test="${not messagesNotFound}">
+
+                                                <c:choose>
+                                                    <c:when test="${messageOne != null}">
+
+                                                        <a href="/JobFinder/account/messages/${messageOne.id}" title="${messageOne.content}" class="message-link">
+                                                            <c:choose>
+                                                                <c:when test="${messageOne.isReaded}">
+                                                                    <div class="row odd message readed">
+                                                                        <div class="col-xs-2 col-sm-1 message-col-icon">
+                                                                            <span class="user-messages-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <div class="col-xs-10 col-sm-11 col-md-8 message-col-message">
+                                                                            <span class="user-messages-message">${messageOne.content}</span>
+                                                                        </div>
+                                                                        <div class="col-md-3 hidden-xs hidden-sm message-col-date">
+                                                                            <span class="user-messages-date">${messageOne.date}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <div class="row odd message">
+                                                                        <div class="col-xs-2 col-sm-1 message-col-icon">
+                                                                            <span class="user-messages-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                        <div class="col-xs-10 col-sm-11 col-md-8 message-col-message">
+                                                                            <span class="user-messages-message">${messageOne.content}</span>
+                                                                        </div>
+                                                                        <div class="col-md-3 hidden-xs hidden-sm message-col-date">
+                                                                            <span class="user-messages-date">${messageOne.date}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </a> 
+
+                                                        <c:choose>
+                                                            <c:when test="${messageTwo != null}">
+                                                                <a href="/JobFinder/account/messages/${messageTwo.id}" title="${messageTwo.content}" class="message-link">
+                                                                    <c:choose>
+                                                                        <c:when test="${messageTwo.isReaded}">
+                                                                            <div class="row even message readed">
+                                                                                <div class="col-xs-2 col-sm-1 message-col-icon">
+                                                                                    <span class="user-messages-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                                                </div>
+                                                                                <div class="col-xs-10 col-sm-11 col-md-8 message-col-message">
+                                                                                    <span class="user-messages-message">${messageTwo.content}</span>
+                                                                                </div>
+                                                                                <div class="col-md-3 hidden-xs hidden-sm message-col-date">
+                                                                                    <span class="user-messages-date">${messageTwo.date}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            <div class="row even message">
+                                                                                <div class="col-xs-2 col-sm-1 message-col-icon">
+                                                                                    <span class="user-messages-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                                                </div>
+                                                                                <div class="col-xs-10 col-sm-11 col-md-8 message-col-message">
+                                                                                    <span class="user-messages-message">${messageTwo.content}</span>
+                                                                                </div>
+                                                                                <div class="col-md-3 hidden-xs hidden-sm message-col-date">
+                                                                                    <span class="user-messages-date">${messageTwo.date}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </a> 
+
+                                                                <c:choose>
+                                                                    <c:when test="${messageThree != null}">
+                                                                        <a href="/JobFinder/account/messages/${messageThree.id}" title="${messageThree.content}" class="message-link">
+
+                                                                            <c:choose>
+                                                                                <c:when test="${messageThree.isReaded}">
+                                                                                    <div class="row odd message readed">
+                                                                                        <div class="col-xs-2 col-sm-1 message-col-icon">
+                                                                                            <span class="user-messages-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                                                        </div>
+                                                                                        <div class="col-xs-10 col-sm-11 col-md-8 message-col-message">
+                                                                                            <span class="user-messages-message">${messageThree.content}</span>
+                                                                                        </div>
+                                                                                        <div class="col-md-3 hidden-xs hidden-sm message-col-date">
+                                                                                            <span class="user-messages-date">${messageThree.date}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <div class="row odd message">
+                                                                                        <div class="col-xs-2 col-sm-1 message-col-icon">
+                                                                                            <span class="user-messages-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                                                        </div>
+                                                                                        <div class="col-xs-10 col-sm-11 col-md-8 message-col-message">
+                                                                                            <span class="user-messages-message">${messageThree.content}</span>
+                                                                                        </div>
+                                                                                        <div class="col-md-3 hidden-xs hidden-sm message-col-date">
+                                                                                            <span class="user-messages-date">${messageThree.date}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+
+                                                                        </a> 
+                                                                    </c:when>
+                                                                </c:choose>
+
+                                                            </c:when>
+                                                        </c:choose>
+
+                                                    </c:when>
+                                                </c:choose>
+
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="row odd message">
+                                                    <div class="col-xs-12 message-col-message">
+                                                        <span class="user-messages-message">No messages found.</span>
+                                                    </div>
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                    </div>
+                                </div>
+
+                                <c:choose>
+                                    <c:when test="${not messagesNotFound}">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <a href="/JobFinder/account/messages" title="Messages" class="btn btn-default btn-user-panel-more pull-right">
+                                                    <i class="fa fa-envelope" aria-hidden="true"></i> All messages
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </c:when>
+                                </c:choose>
+
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6">
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h3 class="user-dashboard-header"><i class="fa fa-list" aria-hidden="true"></i> Applies</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <c:choose>
+                                            <c:when test="${not appliesNotFound}">
+
+                                                <c:choose>
+                                                    <c:when test="${applyOne != null}">
+
+                                                        <a href="/JobFinder/account/applies/${applyOne.jobOffer.id}" title="${applyOne.jobOffer.position}" class="application-link">
+                                                            <div class="row odd application">
+                                                                <div class="col-xs-12 col-md-6 col-lg-7 application-col-offer">
+                                                                    <span class="user-application-offer">${applyOne.jobOffer.position} - ${applyOne.jobOffer.company}</span>
+                                                                </div>
+                                                                <div class="col-xs-6 col-md-3 application-col-city">
+                                                                    <span class="user-application-city">${applyOne.jobOffer.city}</span>
+                                                                </div>
+                                                                <div class="col-xs-6 col-md-3 col-lg-2 application-col-date">
+                                                                    <span class="user-application-date">${applyOne.jobOffer.date}</span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                        <c:choose>
+                                                            <c:when test="${applyTwo != null}">
+
+                                                                <a href="/JobFinder/account/applies/${applyTwo.jobOffer.id}" title="${applyTwo.jobOffer.position}" class="application-link">
+                                                                    <div class="row even application">
+                                                                        <div class="col-xs-12 col-md-6 col-lg-7 application-col-offer">
+                                                                            <span class="user-application-offer">${applyTwo.jobOffer.position} - ${applyTwo.jobOffer.company}</span>
+                                                                        </div>
+                                                                        <div class="col-xs-6 col-md-3 application-col-city">
+                                                                            <span class="user-application-city">${applyTwo.jobOffer.city}</span>
+                                                                        </div>
+                                                                        <div class="col-xs-6 col-md-3 col-lg-2 application-col-date">
+                                                                            <span class="user-application-date">${applyTwo.jobOffer.date}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+
+                                                                <c:choose>
+                                                                    <c:when test="${applyThree != null}">
+
+                                                                        <a href="/JobFinder/account/applies/${applyThree.jobOffer.id}" title="${applyThree.jobOffer.position}" class="application-link">
+                                                                            <div class="row odd application">
+                                                                                <div class="col-xs-12 col-md-6 col-lg-7 application-col-offer">
+                                                                                    <span class="user-application-offer">${applyThree.jobOffer.position} - ${applyThree.jobOffer.company}</span>
+                                                                                </div>
+                                                                                <div class="col-xs-6 col-md-3 application-col-city">
+                                                                                    <span class="user-application-city">${applyThree.jobOffer.city}</span>
+                                                                                </div>
+                                                                                <div class="col-xs-6 col-md-3 col-lg-2 application-col-date">
+                                                                                    <span class="user-application-date">${applyThree.jobOffer.date}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+
+                                                                    </c:when>
+                                                                </c:choose>
+
+                                                            </c:when>
+                                                        </c:choose>
+
+                                                    </c:when>
+                                                </c:choose>
+
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="row odd application">
+                                                    <div class="col-xs-12 application-col-offer">
+                                                        <span class="user-application-offer">No applies found.</span>
+                                                    </div>
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                </div>
+
+                                <c:choose>
+                                    <c:when test="${not appliesNotFound}">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <a href="/JobFinder/account/applies" title="All applies" class="btn btn-default btn-user-panel-more pull-right">
+                                                    <i class="fa fa-list" aria-hidden="true"></i> All applies
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </c:when>
+                                </c:choose>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
